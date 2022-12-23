@@ -1,0 +1,125 @@
+:root{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    --primary: #04BF00;
+    --darker: #333333;
+    --dark: #6F6F6F;
+    --shaded:#D4D4D4;
+    --lighter: #FFFFFF;
+    --light: #F3F4F3;
+    --error: #E64848;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--light);
+}
+
+nav{
+    background-color:var(--light);
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+nav h2 a{
+    text-decoration: none;
+    color: var(--darker);
+}
+
+nav ul li a{
+    color:var(--darker);
+    text-decoration: none;
+    
+}
+
+.nav-bar .active{
+    background-color: var(--primary);
+    color: var(--lighter);
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.top-image{
+    margin: auto;
+    display: block;
+    width: 1200px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.head-line{
+    width: 1200px;
+    margin: auto;
+    background-color: var(--darker);
+    border-radius: 10px;
+}
+
+.head-line h2{
+    color: var(--lighter);
+    padding: 20px 50px;
+    text-align: center;
+    font-style: italic;
+}
+
+
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    padding: 20px 80px;
+    width: fit-content;
+    margin: auto;
+    border: var(--shaded) 0.5px solid;
+    background-color: var(--lighter)
+
+}
+
+.input-field{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.input-field label{
+    color: var(--dark);
+}
+
+.input-field input{
+    padding: 10px 20px;
+    font-size: medium;
+    border-radius: 8px;
+    border: 1px solid var(--dark);
+    outline: none;
+    color: var(--darker);
+}
+
+.auth-btn{
+    padding: 10px 50px;
+    font-size: medium;
+    border-radius: 20px;
+    border: none;
+    color: var(--lighter);
+    background-color: var(--primary);
+}
+
+
+.input-error{
+    color: var(--error);
+}
