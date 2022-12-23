@@ -141,3 +141,12 @@ nav ul li a{
     color: var(--primary);
     text-decoration: none;
 }
+
+.sign-out{
+    width: 100%;
+}
+
+.sign-out input{
+    display: block;
+    margin: auto;
+}

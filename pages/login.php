@@ -33,10 +33,18 @@ if (isset($_POST["submit"])) {
         include("../config/db_connect.php");
 
         try {
-            $sql = "INSERT INTO user (name, email, indexNo, password) VALUES (:name, :email, :indexNo, :password)";
+            $sql = "SELECT * FROM users WHERE email = :email";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["name" => $name, "email" => $email, "indexNo" => $indexNo, "password" => $password]);
-            header("Location: index.php");
+            $stmt->execute(["email" => $email]);
+            $user = $stmt->fetch();
+
+            if ($user->password == $password) {
+                session_start();
+                $_SESSION["indexNo"] = $user->indexNo;
+                header("Location: index.php");
+            } else {
+                $errors["password"] = "Wrong password";
+            }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage;
         }

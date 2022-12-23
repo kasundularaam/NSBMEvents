@@ -1,9 +1,16 @@
 <?php
 
-$name = $email = $indexNo = $password;
-$errors = array("name" => "", "email" => "", "index" => "", "password" => "");
+$indexNo = $name = $email = $password;
+$errors = array("index" => "", "name" => "", "email" => "", "password" => "");
 
 if (isset($_POST["submit"])) {
+
+    if (empty($_POST["indexNo"])) {
+        $errors["indexNo"] = "Index No is required";
+    } else {
+        $indexNo = $_POST["indexNo"];
+        $errors["indexNo"] = "";
+    }
 
     if (empty($_POST["email"])) {
         $errors["email"] = "Email is required";
@@ -14,13 +21,6 @@ if (isset($_POST["submit"])) {
         } else {
             $errors["email"] = "";
         }
-    }
-
-    if (empty($_POST["indexNo"])) {
-        $errors["indexNo"] = "Index No is required";
-    } else {
-        $indexNo = $_POST["indexNo"];
-        $errors["indexNo"] = "";
     }
 
     if (empty($_POST["name"])) {
@@ -47,9 +47,9 @@ if (isset($_POST["submit"])) {
         include("../config/db_connect.php");
 
         try {
-            $sql = "INSERT INTO user (name, email, indexNo, password) VALUES (:name, :email, :indexNo, :password)";
+            $sql = "INSERT INTO users (indexNo, name, email, password) VALUES (:indexNo, :name, :email, :password)";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(["name" => $name, "email" => $email, "indexNo" => $indexNo, "password" => $password]);
+            $stmt->execute(["indexNo" => $indexNo, "name" => $name, "email" => $email, "password" => $password]);
             session_start();
             $_SESSION["indexNo"] = $indexNo;
             header("Location: index.php");
@@ -77,6 +77,13 @@ include("../components/header.php"); ?>
     <h2>Sign In</h2>
 
     <div class="input-field">
+        <label for="indexNo">Index No</label>
+        <input type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
+        <div class="input-error"><?php echo $errors["indexNo"] ?>
+        </div>
+    </div>
+
+    <div class="input-field">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" value="<?php echo $name ?>">
         <div class="input-error"><?php echo $errors["name"] ?></div>
@@ -88,14 +95,6 @@ include("../components/header.php"); ?>
         <input type="email" name="email" id="email" value="<?php echo $email ?>">
         <div class="input-error"><?php echo $errors["email"] ?></div>
     </div>
-
-    <div class="input-field">
-        <label for="indexNo">Index No</label>
-        <input type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
-        <div class="input-error"><?php echo $errors["indexNo"] ?>
-        </div>
-    </div>
-
 
     <div class="input-field">
         <label for="password">Password</label>

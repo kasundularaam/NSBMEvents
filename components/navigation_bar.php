@@ -9,7 +9,7 @@ function isActive($active)
 }
 
 session_start();
-$indexNo = $_SESSION["indexNo"] ?? "guest";
+$sessionIndexNo = $_SESSION["indexNo"] ?? "guest";
 ?>
 
 <nav class="nav-bar">
@@ -19,10 +19,10 @@ $indexNo = $_SESSION["indexNo"] ?? "guest";
         <li><a href="./about_us.php" <?php isActive("About Us"); ?>>About Us</a></li>
         <li><a href="./contact_us.php" <?php isActive("Contact Us"); ?>>Contact Us</a></li>
 
-        <?php if ($indexNo == "guest") : ?>
-            <li><a href="./sign_in.php" <?php isActive("Sign In"); ?>>Sign In</a></li>
+        <?php if ($sessionIndexNo == "guest") : ?>
+            <li><a href="./login.php" <?php isActive("Log In"); ?>>Log In</a></li>
         <?php else : ?>
-            <li><a href="./profile.php" <?php isActive("Profile"); ?>><?php echo $indexNo ?></a></li>
+            <li><a href="./profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>
         <?php endif; ?>
     </ul>
 </nav>
