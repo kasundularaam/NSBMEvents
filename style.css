@@ -80,9 +80,9 @@ nav ul li a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
     border-radius: 20px;
-    padding: 20px 80px;
+    padding: 40px 80px;
     width: fit-content;
     margin: auto;
     border: var(--shaded) 0.5px solid;
@@ -90,11 +90,19 @@ nav ul li a{
 
 }
 
+.auth-form h2{
+    width: 100%;
+    display: block;
+    color: var(--dark);
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+}
 .input-field{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 6px;
 }
 
 .input-field label{
@@ -122,4 +130,14 @@ nav ul li a{
 
 .input-error{
     color: var(--error);
+}
+
+.auth-form .else{
+    color: var(--dark);
+    margin-top: 5px;
+}
+
+.auth-form .else a{
+    color: var(--primary);
+    text-decoration: none;
 }

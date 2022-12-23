@@ -1,7 +1,7 @@
 <?php
 
-$name = $email = $indexNo = $password;
-$errors = array("name" => "", "email" => "", "index" => "", "password" => "");
+$email = $password;
+$errors = array("email" => "", "password" => "");
 
 if (isset($_POST["submit"])) {
 
@@ -14,20 +14,6 @@ if (isset($_POST["submit"])) {
         } else {
             $errors["email"] = "";
         }
-    }
-
-    if (empty($_POST["indexNo"])) {
-        $errors["indexNo"] = "Index No is required";
-    } else {
-        $indexNo = $_POST["indexNo"];
-        $errors["indexNo"] = "";
-    }
-
-    if (empty($_POST["name"])) {
-        $errors["name"] = "Name is required";
-    } else {
-        $name = $_POST["name"];
-        $errors["name"] = "";
     }
 
     if (empty($_POST["password"])) {
@@ -50,8 +36,6 @@ if (isset($_POST["submit"])) {
             $sql = "INSERT INTO user (name, email, indexNo, password) VALUES (:name, :email, :indexNo, :password)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute(["name" => $name, "email" => $email, "indexNo" => $indexNo, "password" => $password]);
-            session_start();
-            $_SESSION["indexNo"] = $indexNo;
             header("Location: index.php");
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage;
@@ -74,14 +58,7 @@ include("../components/header.php"); ?>
 
 <form class="auth-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-    <h2>Sign In</h2>
-
-    <div class="input-field">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?php echo $name ?>">
-        <div class="input-error"><?php echo $errors["name"] ?></div>
-    </div>
-
+    <h2>Log In</h2>
 
     <div class="input-field">
         <label for="email">Email</label>
@@ -90,24 +67,15 @@ include("../components/header.php"); ?>
     </div>
 
     <div class="input-field">
-        <label for="indexNo">Index No</label>
-        <input type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
-        <div class="input-error"><?php echo $errors["indexNo"] ?>
-        </div>
-    </div>
-
-
-    <div class="input-field">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" value="<?php echo $password ?>">
         <div class="input-error"><?php echo $errors["password"] ?>
         </div>
     </div>
 
+    <input class="auth-btn" type="submit" name="submit" value="Log In">
 
-    <input class="auth-btn" type="submit" name="submit" value="Sign In">
-
-    <div class="else">If you already have an account <a href="./login.php">Log In</a></div>
+    <div class="else">If you don't have an account <a href="./sign_in.php">Sign In</a></div>
 
 </form>
 

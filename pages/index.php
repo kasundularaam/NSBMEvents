@@ -1,21 +1,5 @@
 <?php
 
-try {
-  $conn = mysqli_connect("localhost", "berry", "123456", "nsbm_events");
-  if ($conn) {
-    echo "Database Connected Successfully";
-  }
-} catch (\Throwable $th) {
-  echo "Connection Error: " . mysqli_connect_error();
-  //throw $th;
-}
-
-
-
-
-
-
-
 ?>
 
 
