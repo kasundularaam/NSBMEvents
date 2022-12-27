@@ -69,7 +69,7 @@ function register($indexNo, $name, $email, $password)
 }
 
 
-$indexNo = $name = $email = $password;
+$indexNo = $name = $email = $password = "";
 $errors = array("index" => "", "name" => "", "email" => "", "password" => "");
 $serverError = "";
 

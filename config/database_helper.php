@@ -16,6 +16,11 @@ class DatabaseHelper
         $this->password = "123456";
     }
 
+    public function getDB()
+    {
+        return $this->db;
+    }
+
     public function connect()
     {
         try {
@@ -33,7 +38,7 @@ class DatabaseHelper
             $stmt->execute($parameters);
             return $stmt;
         } catch (PDOException $e) {
-            // handle the exception
+            throw $e;
         }
     }
 

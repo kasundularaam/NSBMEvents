@@ -22,7 +22,7 @@ function login($email, $password)
     }
 }
 
-$email = $password;
+$email = $password = "";
 $errors = array("email" => "", "password" => "");
 
 if (isset($_POST["submit"])) {

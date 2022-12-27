@@ -12,28 +12,32 @@ function authorize()
     }
 }
 
-function addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time)
+function addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time, $entrance)
 {
     try {
         $helper = new DatabaseHelper();
 
         $helper->connect();
 
-        $sql = "INSERT INTO events (title, imageUrl, organizedBy, place, description, date, time) VALUES (:title, :imageUrl, :organizedBy, :place, :description, :date, :time)";
-        $params = ["title" => $title, "imageUrl" => $imageUrl, "organizedBy" => $organizedBy, "place" => $place, "description" => $description, "date" => $date, "time" => $time];
+        $sql = "INSERT INTO events (title, imageUrl, organizedBy, place, description, date, time, free, generalAdmission, vipPass) VALUES (:title, :imageUrl, :organizedBy, :place, :description, :date, :time, :free, :generalAdmission, :vipPass)";
+        $params = ["title" => $title, "imageUrl" => $imageUrl, "organizedBy" => $organizedBy, "place" => $place, "description" => $description, "date" => $date, "time" => $time, "free" => $entrance["free"], "generalAdmission" => $entrance["generalAdmission"], "vipPass" => $entrance["vipPass"]];
         $helper->query($sql, $params);
+        $db = $helper->getDB();
+        $eventId = $db->lastInsertId();
         $helper->close();
-
-        header("Location: new_tickets.php");
+        if (empty($entrance["generalAdmission"]) && empty($entrance["vipPass"])) {
+            header("Location: index.php");
+        } else {
+            header("Location: new_tickets.php?eventId=" . $eventId);
+        }
     } catch (\Throwable $th) {
         $errors["server"] = $th->getMessage();
     }
 }
 
-
 authorize();
 
-$title = $imageUrl = $organizedBy = $place = $description = $date = $time;
+$title = $imageUrl = $organizedBy = $place = $description = $date = $time = "";
 
 $errors = array("title" => "", "imageUrl" => "", "organizedBy" => "", "place" => "", "description" => "", "date" => "", "time" => "", "entrance" => "");
 
@@ -92,18 +96,34 @@ if (isset($_POST["submit"])) {
         $errors["time"] = "";
     }
 
+    if ($_POST["free"] == "free") {
+        $entrance["free"] = "YES";
+    } else {
+        $entrance["free"] = "";
+    }
+
+    if ($_POST["generalAdmission"] == "generalAdmission") {
+        $entrance["generalAdmission"] = "YES";
+    } else {
+        $entrance["generalAdmission"] = "";
+    }
+
+    if ($_POST["vipPass"] == "vipPass") {
+        $entrance["vipPass"] = "YES";
+    } else {
+        $entrance["vipPass"] = "";
+    }
+
     if (!array_filter($entrance)) {
         $errors["entrance"] = "Please select at least one entrance";
     } else {
         $errors["entrance"] = "";
     }
 
-    if (isset($_POST["free"])) {
-        $entrance["free"] = $_POST["free"];
-    }
+
 
     if (!array_filter($errors)) {
-        addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time);
+        addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time, $entrance);
     }
 }
 
@@ -162,15 +182,15 @@ include("../components/header.php"); ?>
             <div class="input-field">
                 <label for="">Entrance</label>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="free" id="free" value="<?php echo $entrance["free"] ?>">
+                    <input type="checkbox" name="free" id="free" value="free">
                     <label for="free">Free</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="generalAdmission" id="generalAdmission" value="<?php echo $entrance["generalAdmission"] ?>">
+                    <input type="checkbox" name="generalAdmission" id="generalAdmission" value="generalAdmission">
                     <label for="generalAdmission">General Admission</label>
                 </div>
                 <div class="checkbox-field">
-                    <input type="checkbox" name="vipPass" id="vipPass" value="<?php echo $entrance["vipPass"] ?>">
+                    <input type="checkbox" name="vipPass" id="vipPass" value="vipPass">
                     <label for="vipPass">VIP Pass</label>
                 </div>
                 <div class="input-error"><?php echo $errors["entrance"] ?></div>
