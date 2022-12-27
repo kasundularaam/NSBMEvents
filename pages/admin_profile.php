@@ -16,8 +16,8 @@ if (isset($_POST["sign-out"])) {
 
 <?php $page = "Profile";
 include("../components/header.php"); ?>
+<h1>Admin Profile</h1>
 
-<h1>User Profile</h1>
 
 
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">

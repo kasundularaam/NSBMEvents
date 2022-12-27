@@ -21,6 +21,8 @@ $sessionIndexNo = $_SESSION["indexNo"] ?? "guest";
 
         <?php if ($sessionIndexNo == "guest") : ?>
             <li><a href="./login.php" <?php isActive("Log In"); ?>>Log In</a></li>
+        <?php elseif ($sessionIndexNo == "Admin") : ?>
+            <li><a href="./admin_profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>
         <?php else : ?>
             <li><a href="./profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>
         <?php endif; ?>

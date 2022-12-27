@@ -1,5 +1,8 @@
 <?php
 
+$hcEmail = "admin@nsbmevents.com";
+$hcPassword = "123456";
+
 $email = $password;
 $errors = array("email" => "", "password" => "");
 
@@ -28,21 +31,9 @@ if (isset($_POST["submit"])) {
     }
 
     if (!array_filter($errors)) {
-
-        require("../config/database_helper.php");
-
-        $helper = new DatabaseHelper();
-
-        $helper->connect();
-
-        $sql = "SELECT * FROM users WHERE email = :email";
-        $params = ["email" => $email];
-        $stmt = $helper->query($sql, $params);
-        $user = $stmt->fetch();
-        $helper->close();
-        if ($user["password"] == $password) {
+        if ($email == $hcEmail && $password == $hcPassword) {
             session_start();
-            $_SESSION["indexNo"] = $user["indexNo"];
+            $_SESSION["indexNo"] = "Admin";
             header("Location: index.php");
         } else {
             $errors["password"] = "Wrong password";
@@ -50,22 +41,17 @@ if (isset($_POST["submit"])) {
     }
 }
 
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page = "Log In";
-include("../components/header.php"); ?>
 
+<?php include "../components/header.php" ?>
 
 <form class="auth-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-    <h2>Log In</h2>
+    <h2>Admin Log In</h2>
 
     <div class="input-field">
         <label for="email">Email</label>
@@ -82,8 +68,7 @@ include("../components/header.php"); ?>
 
     <input class="auth-btn" type="submit" name="submit" value="Log In">
 
-    <div class="else">If you don't have an account <a href="./sign_in.php">Sign In</a></div>
-    <div class="else">Log In as a <a href="./admin_login.php">admin</a></div>
+    <div class="else">Log In as a <a href="./login.php">user</a></div>
 
 </form>
 
