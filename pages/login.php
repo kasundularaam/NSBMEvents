@@ -1,5 +1,27 @@
 <?php
 
+require("../config/database_helper.php");
+
+function login($email, $password)
+{
+    $helper = new DatabaseHelper();
+
+    $helper->connect();
+
+    $sql = "SELECT * FROM users WHERE email = :email";
+    $params = ["email" => $email];
+    $stmt = $helper->query($sql, $params);
+    $user = $stmt->fetch();
+    $helper->close();
+    if ($user["password"] == $password) {
+        session_start();
+        $_SESSION["indexNo"] = $user["indexNo"];
+        header("Location: index.php");
+    } else {
+        $errors["password"] = "Wrong password";
+    }
+}
+
 $email = $password;
 $errors = array("email" => "", "password" => "");
 
@@ -28,25 +50,7 @@ if (isset($_POST["submit"])) {
     }
 
     if (!array_filter($errors)) {
-
-        require("../config/database_helper.php");
-
-        $helper = new DatabaseHelper();
-
-        $helper->connect();
-
-        $sql = "SELECT * FROM users WHERE email = :email";
-        $params = ["email" => $email];
-        $stmt = $helper->query($sql, $params);
-        $user = $stmt->fetch();
-        $helper->close();
-        if ($user["password"] == $password) {
-            session_start();
-            $_SESSION["indexNo"] = $user["indexNo"];
-            header("Location: index.php");
-        } else {
-            $errors["password"] = "Wrong password";
-        }
+        login($email, $password);
     }
 }
 

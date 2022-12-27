@@ -9,21 +9,23 @@ if (isset($_POST["sign-out"])) {
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <?php $page = "Profile";
 include("../components/header.php"); ?>
-<h1>Admin Profile</h1>
 
+<form class="user-details-card card" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-
-<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-    <div class="sign-out">
-        <input class="auth-btn" name="sign-out" type="submit" value="Sign Out">
+    <div class="details-view">
+        <img src="../images/admin.png" alt="Avatar" class="avatar">
+        <div class="text-view">
+            <h2>Admin</h2>
+            admin@nsbmevents.com
+        </div>
     </div>
+
+    <input class="auth-btn" name="sign-out" type="submit" value="Sign Out">
 </form>
 
 <?php include "../components/footer.php" ?>

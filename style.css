@@ -45,6 +45,13 @@ nav ul li a{
     
 }
 
+.card{
+    border-radius: 10px;
+    padding: 10px 30px;
+    border: var(--shaded) 0.5px solid;
+    background-color: var(--lighter)
+}
+
 .nav-bar .active{
     background-color: var(--primary);
     color: var(--lighter);
@@ -142,11 +149,36 @@ nav ul li a{
     text-decoration: none;
 }
 
-.sign-out{
-    width: 100%;
+.avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 2px;
+    border: 5px solid var(--primary);
 }
 
-.sign-out input{
-    display: block;
-    margin: auto;
+.user-details-card{
+    max-width: 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.user-details-card .details-view{
+    display: flex;
+    gap: 30px;
+}
+
+.user-details-card .details-view .text-view h2{
+    padding: 0;
+    margin: 0;
+}
+
+.user-details-card .details-view .text-view{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
 }
