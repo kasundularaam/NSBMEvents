@@ -1,7 +1,76 @@
 <?php
 
+require("../config/database_helper.php");
+
+function checkAlreadyRegistered($indexNo)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "SELECT * FROM users WHERE indexNo = :indexNo";
+        $params = ["indexNo" => $indexNo];
+        $stmt = $helper->query($sql, $params);
+        $user = $stmt->fetch();
+        $helper->close();
+
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (\Throwable $th) {
+        throw $th;
+    }
+}
+
+function checkEmailRegistered($email)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $params = ["email" => $email];
+        $stmt = $helper->query($sql, $params);
+        $user = $stmt->fetch();
+        $helper->close();
+
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (\Throwable $th) {
+        throw $th;
+    }
+}
+
+function register($indexNo, $name, $email, $password)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "INSERT INTO users (indexNo, name, email, password) VALUES (:indexNo, :name, :email, :password)";
+        $params = ["indexNo" => $indexNo, "name" => $name, "email" => $email, "password" => $password];
+        $helper->query($sql, $params);
+
+        session_start();
+        $_SESSION["indexNo"] = $indexNo;
+        header("Location: index.php");
+    } catch (\Throwable $th) {
+        $errors["server"] = $th->getMessage();
+    }
+}
+
+
 $indexNo = $name = $email = $password;
 $errors = array("index" => "", "name" => "", "email" => "", "password" => "");
+$serverErrors = "";
 
 if (isset($_POST["submit"])) {
 
@@ -41,21 +110,21 @@ if (isset($_POST["submit"])) {
         }
     }
 
-    if (array_filter($errors)) {
-    } else {
-
-        include("../config/db_connect.php");
-
-        try {
-            $sql = "INSERT INTO users (indexNo, name, email, password) VALUES (:indexNo, :name, :email, :password)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(["indexNo" => $indexNo, "name" => $name, "email" => $email, "password" => $password]);
-            session_start();
-            $_SESSION["indexNo"] = $indexNo;
-            header("Location: index.php");
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage;
+    if (!array_filter($errors)) {
+        if (checkAlreadyRegistered($indexNo)) {
+            $serverError = "This Index Number already registered";
+        } else {
+            $serverError = "";
+            if (checkEmailRegistered($email)) {
+                $serverError = "This Email already registered";
+            } else {
+                $serverError = "";
+            }
         }
+    }
+
+    if (!$serverError) {
+        register($indexNo, $name, $email, $password);
     }
 }
 
@@ -105,6 +174,8 @@ include("../components/header.php"); ?>
 
 
     <input class="auth-btn" type="submit" name="submit" value="Sign In">
+
+    <div class="input-error"><?php echo $serverError ?></div>
 
     <div class="else">If you already have an account <a href="./login.php">Log In</a></div>
 

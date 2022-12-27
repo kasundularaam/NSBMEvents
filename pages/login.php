@@ -27,26 +27,25 @@ if (isset($_POST["submit"])) {
         }
     }
 
-    if (array_filter($errors)) {
-    } else {
+    if (!array_filter($errors)) {
 
-        include("../config/db_connect.php");
+        require("../config/database_helper.php");
 
-        try {
-            $sql = "SELECT * FROM users WHERE email = :email";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute(["email" => $email]);
-            $user = $stmt->fetch();
+        $helper = new DatabaseHelper();
 
-            if ($user->password == $password) {
-                session_start();
-                $_SESSION["indexNo"] = $user->indexNo;
-                header("Location: index.php");
-            } else {
-                $errors["password"] = "Wrong password";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage;
+        $helper->connect();
+
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $params = ["email" => $email];
+        $stmt = $helper->query($sql, $params);
+        $user = $stmt->fetch();
+        $helper->close();
+        if ($user["password"] == $password) {
+            session_start();
+            $_SESSION["indexNo"] = $user["indexNo"];
+            header("Location: index.php");
+        } else {
+            $errors["password"] = "Wrong password";
         }
     }
 }
@@ -60,7 +59,7 @@ if (isset($_POST["submit"])) {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page = "Sign In";
+<?php $page = "Log In";
 include("../components/header.php"); ?>
 
 
