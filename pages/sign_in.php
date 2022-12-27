@@ -58,6 +58,7 @@ function register($indexNo, $name, $email, $password)
         $sql = "INSERT INTO users (indexNo, name, email, password) VALUES (:indexNo, :name, :email, :password)";
         $params = ["indexNo" => $indexNo, "name" => $name, "email" => $email, "password" => $password];
         $helper->query($sql, $params);
+        $helper->close();
 
         session_start();
         $_SESSION["indexNo"] = $indexNo;
@@ -70,7 +71,7 @@ function register($indexNo, $name, $email, $password)
 
 $indexNo = $name = $email = $password;
 $errors = array("index" => "", "name" => "", "email" => "", "password" => "");
-$serverErrors = "";
+$serverError = "";
 
 if (isset($_POST["submit"])) {
 

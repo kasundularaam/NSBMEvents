@@ -22,6 +22,7 @@ include("../components/header.php"); ?>
         <div class="text-view">
             <h2>Admin</h2>
             admin@nsbmevents.com
+            <a href="new_event.php">add new event</a>
         </div>
     </div>
 

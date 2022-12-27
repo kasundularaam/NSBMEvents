@@ -108,7 +108,6 @@ nav ul li a{
 .input-field{
     display:flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 6px;
 }
 
@@ -116,7 +115,7 @@ nav ul li a{
     color: var(--dark);
 }
 
-.input-field input{
+.input-field input,textarea{
     padding: 10px 20px;
     font-size: medium;
     border-radius: 8px;
@@ -125,7 +124,24 @@ nav ul li a{
     color: var(--darker);
 }
 
+.checkbox-field{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-field label{
+    color: var(--dark);
+}
+
+.checkbox-field input{
+   width: 20px;
+   height: 20px;
+}
+
 .auth-btn{
+    display: flex;
+    justify-content: stretch;
     padding: 10px 50px;
     font-size: medium;
     border-radius: 20px;
@@ -182,3 +198,43 @@ nav ul li a{
     gap: 10px;
     justify-content: center;
 }
+
+.user-details-card .details-view .text-view a{
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.event-form{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 30px;
+    padding: 20px 40px;
+    margin: auto;
+    border-radius: 10px;
+    border: var(--shaded) 0.5px solid;
+    background-color: var(--lighter)
+}
+
+.event-form h2{
+    color: var(--darker);
+
+}
+
+.event-form .row{
+    display: flex;
+    gap: 200px;
+}
+
+.event-form .auth-btn{
+    margin-left: auto;
+}
+
+
+.event-form .column{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
