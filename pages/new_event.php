@@ -26,10 +26,42 @@ function addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, 
         $eventId = $db->lastInsertId();
         $helper->close();
         if (empty($entrance["generalAdmission"]) && empty($entrance["vipPass"])) {
-            header("Location: index.php");
+            return "NO";
         } else {
-            header("Location: new_tickets.php?eventId=" . $eventId);
+            return $eventId;
         }
+    } catch (\Throwable $th) {
+        $errors["server"] = $th->getMessage();
+    }
+}
+
+function updateEvent($eventId, $ticketType, $ticketId)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "UPDATE events SET " . $ticketType . " = :ticketId WHERE eventId = :eventId";
+        $params = ["ticketId" => $ticketId, "eventId" => $eventId];
+        $helper->query($sql, $params);
+        $helper->close();
+    } catch (\Throwable $th) {
+        $errors["server"] = $th->getMessage();
+    }
+}
+
+function addTicket($eventId, $ticket)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "INSERT INTO tickets (eventId, type, price, ticketLimit) VALUES (:eventId, :type, :price, :ticketLimit)";
+        $params = ["eventId" => $eventId, "type" => $ticket["type"], "price" => $ticket["price"], "ticketLimit" => $ticket["ticketLimit"]];
+        $helper->query($sql, $params);
+        $helper->close();
     } catch (\Throwable $th) {
         $errors["server"] = $th->getMessage();
     }
@@ -43,6 +75,8 @@ $errors = array("title" => "", "imageUrl" => "", "organizedBy" => "", "place" =>
 
 $entrance = array("free" => "", "generalAdmission" => "", "vipPass" => "");
 
+$tickets = array();
+
 $serverError = "";
 
 function getInput($field)
@@ -53,6 +87,15 @@ function getInput($field)
     } else {
         $errors[$field] = "";
         return $_POST[$field];
+    }
+}
+
+function getTicketInputs($type, $priceTag, $limitTag)
+{
+    if (!empty($_POST[$priceTag]) && !empty($_POST[$limitTag])) {
+        return array("type" => $type, "price" => $_POST[$priceTag], "ticketLimit" => $_POST[$limitTag]);
+    } else {
+        $errors["entrance"] = "Some necessary fields are empty";
     }
 }
 
@@ -94,10 +137,30 @@ if (isset($_POST["submit"])) {
         $errors["entrance"] = "";
     }
 
+    if ($entrance["generalAdmission"] == "YES") {
+        $ticket = getTicketInputs("generalAdmission", "priceGA", "limitGA");
+        array_push($tickets, $ticket);
+    }
+
+    if ($entrance["vipPass"] == "YES") {
+        $ticket = getTicketInputs("vipPass", "priceVIP", "limitVIP");
+        array_push($tickets, $ticket);
+    }
 
 
     if (!array_filter($errors)) {
-        addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time, $entrance);
+        $eventId = addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time, $entrance);
+
+        if ($eventId == "NO") {
+            header("Location: index.php");
+        } else {
+            if ($tickets) {
+                foreach ($tickets as $ticket) {
+                    addTicket($eventId, $ticket);
+                }
+            }
+            header("Location: index.php");
+        }
     }
 }
 
