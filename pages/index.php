@@ -83,8 +83,6 @@ function isVipPass($event)
 
 
 $events = getAllEvents();
-
-
 ?>
 
 
@@ -102,13 +100,15 @@ include("../components/header.php"); ?>
 <div class="container">
   <h2>All Events</h2>
 
+  <br>
+
   <div class="events-grid">
 
     <?php foreach ($events as $event) : ?>
       <div class="event-card">
         <img src="<?php echo $event["imageUrl"] ?>" alt="">
         <div class="details">
-          <h2> <a href="http://"> <?php echo $event["title"] ?></a></h2>
+          <h2> <a href="event.php?eventId=<?php echo $event['eventId'] ?>"> <?php echo $event["title"] ?></a></h2>
           <br>
           <div class="info">
             <div class="icon-text">
