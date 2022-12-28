@@ -45,56 +45,30 @@ $entrance = array("free" => "", "generalAdmission" => "", "vipPass" => "");
 
 $serverError = "";
 
+function getInput($field)
+{
+    global $errors;
+    if (empty($_POST[$field])) {
+        $errors[$field] = "This field is required";
+    } else {
+        $errors[$field] = "";
+        return $_POST[$field];
+    }
+}
+
+if (isset($_POST["generalAdmission"])) {
+    echo "General admission";
+}
+
 if (isset($_POST["submit"])) {
 
-    if (empty($_POST["title"])) {
-        $errors["title"] = "Title is required";
-    } else {
-        $title = $_POST["title"];
-        $errors["title"] = "";
-    }
-
-    if (empty($_POST["imageUrl"])) {
-        $errors["imageUrl"] = "Image Url is required";
-    } else {
-        $imageUrl = $_POST["imageUrl"];
-        $errors["imageUrl"] = "";
-    }
-
-    if (empty($_POST["organizedBy"])) {
-        $errors["organizedBy"] = "Organized By is required";
-    } else {
-        $organizedBy = $_POST["organizedBy"];
-        $errors["organizedBy"] = "";
-    }
-
-    if (empty($_POST["place"])) {
-        $errors["place"] = "Place is required";
-    } else {
-        $place = $_POST["place"];
-        $errors["place"] = "";
-    }
-
-    if (empty($_POST["description"])) {
-        $errors["description"] = "Description is required";
-    } else {
-        $description = $_POST["description"];
-        $errors["description"] = "";
-    }
-
-    if (empty($_POST["date"])) {
-        $errors["date"] = "Date is required";
-    } else {
-        $date = $_POST["date"];
-        $errors["date"] = "";
-    }
-
-    if (empty($_POST["time"])) {
-        $errors["time"] = "Time is required";
-    } else {
-        $time = $_POST["time"];
-        $errors["time"] = "";
-    }
+    $title = getInput("title");
+    $imageUrl = getInput("imageUrl");
+    $organizedBy = getInput("organizedBy");
+    $place = getInput("place");
+    $description = getInput("description");
+    $date = getInput("date");
+    $time = getInput("time");
 
     if ($_POST["free"] == "free") {
         $entrance["free"] = "YES";
@@ -144,23 +118,12 @@ include("../components/header.php"); ?>
 
 <form class="event-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
     <h2>Add New Event</h2>
-
     <div class="row">
         <div class="column">
             <div class="input-field">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" value="<?php echo $title ?>">
                 <div class="input-error"><?php echo $errors["title"] ?></div>
-            </div>
-            <div class="input-field">
-                <label for="imageUrl">Image Url</label>
-                <input type="url" name="imageUrl" id="imageUrl" value="<?php echo $imageUrl ?>">
-                <div class="input-error"><?php echo $errors["imageUrl"] ?></div>
-            </div>
-            <div class="input-field">
-                <label for="organizedBy">Organized By</label>
-                <input type="text" name="organizedBy" id="organizedBy" value="<?php echo $organizedBy ?>">
-                <div class="input-error"><?php echo $errors["organizedBy"] ?></div>
             </div>
             <div class="input-field">
                 <label for="place">Place</label>
@@ -170,31 +133,29 @@ include("../components/header.php"); ?>
         </div>
         <div class="column">
             <div class="input-field">
+                <label for="imageUrl">Image Url</label>
+                <input type="url" name="imageUrl" id="imageUrl" value="<?php echo $imageUrl ?>">
+                <div class="input-error"><?php echo $errors["imageUrl"] ?></div>
+            </div>
+            <div class="input-field">
                 <label for="date">Date</label>
                 <input type="date" name="date" id="date" value="<?php echo $date ?>">
                 <div class="input-error"><?php echo $errors["date"] ?></div>
             </div>
+        </div>
+        <div class="column">
+            <div class="input-field">
+                <label for="organizedBy">Organized By</label>
+                <input type="text" name="organizedBy" id="organizedBy" value="<?php echo $organizedBy ?>">
+                <div class="input-error"><?php echo $errors["organizedBy"] ?></div>
+            </div>
+
             <div class="input-field">
                 <label for="time">Time</label>
                 <input type="time" name="time" id="time" value="<?php echo $time ?>">
                 <div class="input-error"><?php echo $errors["time"] ?></div>
             </div>
-            <div class="input-field">
-                <label for="">Entrance</label>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="free" id="free" value="free">
-                    <label for="free">Free</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="generalAdmission" id="generalAdmission" value="generalAdmission">
-                    <label for="generalAdmission">General Admission</label>
-                </div>
-                <div class="checkbox-field">
-                    <input type="checkbox" name="vipPass" id="vipPass" value="vipPass">
-                    <label for="vipPass">VIP Pass</label>
-                </div>
-                <div class="input-error"><?php echo $errors["entrance"] ?></div>
-            </div>
+
         </div>
     </div>
 
@@ -204,9 +165,77 @@ include("../components/header.php"); ?>
         <div class="input-error"><?php echo $errors["description"] ?></div>
     </div>
 
+    <div class="input-field">
+        <label for="">Entrance</label>
+        <div class="ticket-input-field">
+
+
+            <div class="checkbox-field">
+                <input type="checkbox" name="free" id="free" value="free">
+                <label for="free">Free</label>
+            </div>
+        </div>
+
+        <div class="ticket-input-field">
+
+            <div class="checkbox-field" onclick="myFunction('generalAdmission', 'ticket-inputs-GA')">
+                <input type="checkbox" name="generalAdmission" id="generalAdmission" value="generalAdmission">
+                <label for="generalAdmission">General Admission</label>
+            </div>
+            <div class="ticket-inputs" id="ticket-inputs-GA">
+                <div class="input-field">
+                    <label for="priceGA">Price</label>
+                    <input type="number" name="priceGA" id="priceGA" value="<?php echo $priceGA ?>">
+                    <div class="input-error"><?php echo $errors["priceGA"] ?></div>
+                </div>
+                <div class="input-field">
+                    <label for="limitGA">Limit</label>
+                    <input type="number" name="limitGA" id="limitGA" value="<?php echo $limitGA ?>">
+                    <div class="input-error"><?php echo $errors["limitGA"] ?></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ticket-input-field">
+            <div class="checkbox-field" onclick="myFunction('vipPass', 'ticket-inputs-VIP')">
+                <input type="checkbox" name="vipPass" id="vipPass" value="vipPass">
+                <label for="vipPass">VIP Pass</label>
+            </div>
+
+            <div class="ticket-inputs" id="ticket-inputs-VIP">
+
+                <div class="input-field">
+                    <label for="priceVIP">Price</label>
+                    <input type="number" name="priceVIP" id="priceVIP" value="<?php echo $priceVIP ?>">
+                    <div class="input-error"><?php echo $errors["priceVIP"] ?></div>
+                </div>
+                <div class="input-field">
+                    <label for="limitVIP">Limit</label>
+                    <input type="number" name="limitVIP" id="limitVIP" value="<?php echo $limitVIP ?>">
+                    <div class="input-error"><?php echo $errors["limitVIP"] ?></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="input-error"><?php echo $errors["entrance"] ?></div>
+    </div>
+
     <input class="auth-btn" type="submit" name="submit" value="Submit">
 
 </form>
+
+<script>
+    function myFunction(id, item) {
+        var checkBox = document.getElementById(id);
+        var inputs = document.getElementById(item);
+        if (checkBox.checked == true) {
+            inputs.style.display = "flex";
+        } else {
+            inputs.style.display = "none";
+        }
+    }
+</script>
 
 <?php include "../components/footer.php" ?>
 

@@ -223,7 +223,7 @@ nav ul li a{
 
 .event-form .row{
     display: flex;
-    gap: 200px;
+    gap: 100px;
 }
 
 .event-form .auth-btn{
@@ -236,5 +236,28 @@ nav ul li a{
     flex-direction: column;
     gap: 30px;
 }
+
+.ticket-input-field{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: var(--shaded) 0.5px solid;
+    justify-content:space-between;
+}
+
+.ticket-input-field .ticket-inputs{
+    display: none;
+    gap: 10px;
+
+}
+
+.ticket-input-field .input-field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
 
 
