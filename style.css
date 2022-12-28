@@ -118,7 +118,7 @@ nav ul li a{
 .input-field input,textarea{
     padding: 10px 20px;
     font-size: medium;
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid var(--dark);
     outline: none;
     color: var(--darker);

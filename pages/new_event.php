@@ -61,7 +61,10 @@ function addTicket($eventId, $ticket)
         $sql = "INSERT INTO tickets (eventId, type, price, ticketLimit) VALUES (:eventId, :type, :price, :ticketLimit)";
         $params = ["eventId" => $eventId, "type" => $ticket["type"], "price" => $ticket["price"], "ticketLimit" => $ticket["ticketLimit"]];
         $helper->query($sql, $params);
+        $db = $helper->getDB();
+        $ticketId = $db->lastInsertId();
         $helper->close();
+        return $ticketId;
     } catch (\Throwable $th) {
         $errors["server"] = $th->getMessage();
     }
@@ -92,6 +95,7 @@ function getInput($field)
 
 function getTicketInputs($type, $priceTag, $limitTag)
 {
+    global $errors;
     if (!empty($_POST[$priceTag]) && !empty($_POST[$limitTag])) {
         return array("type" => $type, "price" => $_POST[$priceTag], "ticketLimit" => $_POST[$limitTag]);
     } else {
@@ -156,7 +160,8 @@ if (isset($_POST["submit"])) {
         } else {
             if ($tickets) {
                 foreach ($tickets as $ticket) {
-                    addTicket($eventId, $ticket);
+                    $ticketId = addTicket($eventId, $ticket);
+                    updateEvent($eventId, $ticket["type"], $ticketId);
                 }
             }
             header("Location: index.php");
