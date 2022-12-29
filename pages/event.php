@@ -147,98 +147,87 @@ include("../components/header.php"); ?>
 <img class="event-top-img" src="<?php echo $event["imageUrl"] ?>" alt="">
 
 <div class="container">
+    <br>
     <div class="row space-between">
-        <div class="col">
+        <div class="col align-start gap10">
             <h1><?php echo $event["title"] ?></h1>
-            <p>Organized by <?php echo $event["organizedBy"] ?></p>
+            <div class="dark f-large">
+                Organized by <?php echo $event["organizedBy"] ?>
+            </div>
         </div>
-        <div class="info row gap20 align-center">
+        <div class="row gap30">
             <?php if (isFree($event)) : ?>
-                <div class="free entrance-methods">
-                    <div class="icon-text">
-                        <img class="icon" src="../images/free.png" alt="">
-                        Free
-                    </div>
+                <div class="row align-center gap10 primary bold f-large">
+                    <img class="icon-small" src="../images/free.png" alt="">
+                    Free
                 </div>
             <?php endif; ?>
-            <div class="icon-text">
-                <img class="icon" src="../images/calendar.png" alt="">
-                <p>
-                    <?php echo date("d.m.Y", strtotime($event["date"])) . " at " . date('g:ia', strtotime($event["time"])); ?>
-                </p>
+            <div class="f-large dark row gap10 align-center">
+                <img class="icon-small" src="../images/calendar.png" alt="">
+                <?php echo date("d.m.Y", strtotime($event["date"])) . " at " . date('g:ia', strtotime($event["time"])); ?>
+
             </div>
-            <div class="icon-text">
-                <img class="icon" src="../images/place.png" alt="">
-                <p>
-                    <?php echo $event["place"] ?>
-                </p>
+            <div class="f-large dark row gap10 align-center">
+                <img class="icon-small" src="../images/place.png" alt="">
+                <?php echo $event["place"] ?>
             </div>
         </div>
     </div>
-    <br>
-    <div class="row space-between gap20">
-        <p><?php echo $event["description"] ?></p>
+    <hr>
+    <div class="row space-between gap30 align-start">
+        <div class="dark f-medium">
+            <?php echo $event["description"] ?>
+        </div>
         <?php if (!isNoTickets($event)) : ?>
-            <div class="col">
-                <div class="card mxc">
-                    <h2>Buy Tickets</h2>
-                    <hr>
-                    <div class="col gap20">
-                        <?php if (isFree($event)) : ?>
-                            <div class="free entrance-methods">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/free.png" alt="">
+            <div class="card padding10">
+                <h2>Buy Tickets</h2>
+                <hr>
+                <div class="col gap20 align-start">
+                    <?php if (isFree($event)) : ?>
+                        <div class="row align-center gap10 primary bold f-large">
+                            <img class="icon-small" src="../images/free.png" alt="">
+                            Free
+                        </div>
+                    <?php endif; ?>
 
-                                    Free
-                                </div>
+                    <?php if (isGeneralAdmission($event)) : ?>
+                        <div class="row red bold space-between width100">
+                            <div class="row gap10">
+                                <img class="icon-small" src="../images/ticket.png" alt="">
+                                General Admission
                             </div>
-                        <?php endif; ?>
+                            <?php echo "Rs: " . getTicket($event, "generalAdmission")["price"]; ?>
+                        </div>
+                    <?php endif; ?>
 
-                        <?php if (isGeneralAdmission($event)) : ?>
-                            <div class="generalAdmission entrance-methods row space-between gap50">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/ticket.png" alt="">
-                                    General Admission
-
-                                </div>
-                                <?php echo "Rs: " . getTicket($event, "generalAdmission")["price"]; ?>
+                    <?php if (isVipPass($event)) : ?>
+                        <div class="gold bold f-large row space-between width100">
+                            <div class="row gap10 ">
+                                <img class="icon-small" src="../images/vip.png" alt="">
+                                VIP Pass
                             </div>
-                        <?php endif; ?>
-
-                        <?php if (isVipPass($event)) : ?>
-                            <div class="vipPass entrance-methods row space-between gap50">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/vip.png" alt="">
-                                    VIP Pass
-                                </div>
-                                <?php echo "Rs: " . getTicket($event, "vipPass")["price"]; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                    <hr>
-                    <div class="row space-between align-center gap20">
-                        <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
-                            <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "generalAdmission")["ticketId"]; ?>">
-                            <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
-                            <input class="buy-btn general-btn" name="generalBuy" type="submit" value="BUY GENERAL">
-                        </form>
-                        <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
-                            <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "vipPass")["ticketId"]; ?>">
-                            <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
-                            <input class="buy-btn vip-btn" name="vipBuy" type="submit" value="BUY VIP PASS">
-                        </form>
-
-                    </div>
+                            <?php echo "Rs: " . getTicket($event, "vipPass")["price"]; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
-
+                <hr>
+                <div class="row space-between gap20">
+                    <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
+                        <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "generalAdmission")["ticketId"]; ?>">
+                        <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                        <input class="button bg-red" name="generalBuy" type="submit" value="BUY GENERAL">
+                    </form>
+                    <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
+                        <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "vipPass")["ticketId"]; ?>">
+                        <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                        <input class="button bg-gold" name="vipBuy" type="submit" value="BUY VIP PASS">
+                    </form>
+                </div>
             </div>
         <?php endif; ?>
     </div>
 </div>
-
-
-
-
+<br>
 
 <?php include "../components/footer.php" ?>
 
