@@ -14,7 +14,7 @@ function getAllEvents()
 
     $helper->connect();
 
-    $sql = "SELECT * FROM events";
+    $sql = "SELECT * FROM events ORDER BY eventId DESC LIMIT 6 ";
     $params = [];
     $stmt = $helper->query($sql, $params);
     $events = $stmt->fetchAll();
@@ -97,11 +97,18 @@ $events = getAllEvents();
 <?php $page = "NSBM Events";
 include("../components/header.php"); ?>
 
+<div class="welcome-view">
+  <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="">
+  <div class="trance-container">
+  </div>
+
+</div>
+
 <div class="container">
-  <h2>All Events</h2>
+  <h2>FEATURED EVENTS</h2>
+
 
   <br>
-
   <div class="events-grid">
 
     <?php foreach ($events as $event) : ?>

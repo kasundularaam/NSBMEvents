@@ -96,6 +96,18 @@ hr{
     width: max-content;
 }
 
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.rel{
+    position: relative;
+}
+
+.abs{
+    position: absolute;
+}
 
 
 .card{
@@ -422,6 +434,73 @@ hr{
     background-color: var(--generalAdmission);
 }
 
+.ticket{
+    width: 1000px;
+    height: 250px;
+    background-color: var(--lighter);
+}
+
+.ticket .event-image{
+    width: 750px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.ticket .qr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+}
+
+.trans-container{
+    background-color: var(--darker);
+    opacity: 0.8;
+    width: 750px;
+    height: 40px;
+    left: 0;
+    bottom: 0;
+}
+
+.qr img{
+    width:90%;
+    height:90%;
+    object-fit: cover;
+}
+
+.ticket .type{
+    right: 270px;
+    bottom: 3px;
+}
+
+.ticket .event-title{
+    bottom: 0px;
+    left: 0px;
+    padding: 3px 20px;
+    color: var(--primary);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.ticket .icon-text{
+    font-size: 28px;
+}
+
+.ticket .icon{
+    width: 30px;
+    height: 30px;
+}
+
+.welcome-view{
+
+}
+
+.welcome-view img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
 
 @media (max-width: 1000px) {
     .events-grid {
