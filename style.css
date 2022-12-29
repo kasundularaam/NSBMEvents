@@ -118,6 +118,46 @@ p{
     padding: 20px;
 }
 
+.padding-v10{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.padding-v20{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-v40{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.padding-v60{
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.padding-h10{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.padding-v20{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.padding-h40{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.padding-h60{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
 .width100{
     width: 100%;
 }
@@ -238,6 +278,20 @@ p{
 
 .gold{
     color: var(--gold);
+}
+
+.card-image{
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card-description{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
