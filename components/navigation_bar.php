@@ -9,7 +9,7 @@ function isActive($active)
 }
 
 session_start();
-$sessionIndexNo = $_SESSION["indexNo"] ?? "guest";
+$sessionIndexNo = $_SESSION["indexNo"] ?? "Guest";
 ?>
 
 <nav class="nav-bar">
@@ -17,9 +17,10 @@ $sessionIndexNo = $_SESSION["indexNo"] ?? "guest";
     <ul>
         <li> <a href='./index.php' <?php isActive("NSBM Events"); ?>>Home</a> </li>
         <li><a href="./about_us.php" <?php isActive("About Us"); ?>>About Us</a></li>
+        <li><a href="./about_nsbm.php" <?php isActive("About NSBM"); ?>>About NSBM</a></li>
         <li><a href="./contact_us.php" <?php isActive("Contact Us"); ?>>Contact Us</a></li>
 
-        <?php if ($sessionIndexNo == "guest") : ?>
+        <?php if ($sessionIndexNo == "Guest") : ?>
             <li><a href="./login.php" <?php isActive("Log In"); ?>>Log In</a></li>
         <?php elseif ($sessionIndexNo == "Admin") : ?>
             <li><a href="./admin_profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>

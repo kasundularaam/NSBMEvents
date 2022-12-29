@@ -4,6 +4,13 @@ require("../config/database_helper.php");
 $eventId = $_GET['eventId'];
 $error = "";
 
+function getUserId()
+{
+    session_start();
+    $indexNo = $_SESSION["indexNo"] ?? "Guest";
+    return $indexNo;
+}
+
 function getEvent($eventId)
 {
     try {
@@ -22,6 +29,21 @@ function getEvent($eventId)
     }
 }
 $event  = getEvent($eventId);
+
+function buy()
+{
+    $userId = $_POST["userId"];
+    $ticketId = $_POST["ticketId"];
+    if ($userId == "Guest") {
+        header("Location: login.php");
+    } else if ($userId == "Admin") {
+        echo "Dear Admin Its Working :)";
+    } else {
+        if (buyTicket($userId, $ticketId)) {
+            header("Location: profile.php");
+        }
+    }
+}
 
 function getTicket($event, $type)
 {
@@ -86,6 +108,32 @@ function isNoTickets($event)
         return false;
     }
 }
+
+function buyTicket($userId, $ticketId)
+{
+    try {
+        $helper = new DatabaseHelper();
+
+        $helper->connect();
+
+        $sql = "INSERT INTO bookings (userId, ticketId) VALUES (:userId, :ticketId)";
+        $params = ["userId" => $userId, "ticketId" => $ticketId];
+        $helper->query($sql, $params);
+        $helper->close();
+        return true;
+    } catch (\Throwable $th) {
+        $errors["server"] = $th->getMessage();
+    }
+}
+
+
+
+if (isset($_POST["generalBuy"])) {
+    buy();
+}
+if (isset($_POST["vipBuy"])) {
+    buy();
+}
 ?>
 
 
@@ -100,13 +148,15 @@ include("../components/header.php"); ?>
 
 <div class="container">
     <div class="row space-between">
-        <h1><?php echo $event["title"] ?></h1>
+        <div class="col">
+            <h1><?php echo $event["title"] ?></h1>
+            <p>Organized by <?php echo $event["organizedBy"] ?></p>
+        </div>
         <div class="info row gap20 align-center">
             <?php if (isFree($event)) : ?>
                 <div class="free entrance-methods">
                     <div class="icon-text">
                         <img class="icon" src="../images/free.png" alt="">
-
                         Free
                     </div>
                 </div>
@@ -167,8 +217,16 @@ include("../components/header.php"); ?>
                     </div>
                     <hr>
                     <div class="row space-between align-center gap20">
-                        <input class="buy-btn general-btn" type="button" value="BUY GENERAL">
-                        <input class="buy-btn vip-btn" type="button" value="BUY VIP PASS">
+                        <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
+                            <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "generalAdmission")["ticketId"]; ?>">
+                            <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                            <input class="buy-btn general-btn" name="generalBuy" type="submit" value="BUY GENERAL">
+                        </form>
+                        <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
+                            <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "vipPass")["ticketId"]; ?>">
+                            <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                            <input class="buy-btn vip-btn" name="vipBuy" type="submit" value="BUY VIP PASS">
+                        </form>
 
                     </div>
                 </div>
