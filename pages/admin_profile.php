@@ -15,19 +15,23 @@ if (isset($_POST["sign-out"])) {
 <?php $page = "Profile";
 include("../components/header.php"); ?>
 
-<form class="user-details-card card" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+<div class="container">
+    <br>
+    <form class="card row space-between padding-h40 padding-v20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-    <div class="details-view">
-        <img src="../images/admin.png" alt="Avatar" class="avatar">
-        <div class="text-view">
-            <h2>Admin</h2>
-            admin@nsbmevents.com
-            <a href="new_event.php">add new event</a>
+        <div class="row gap20">
+            <img src="../images/admin.png" alt="Avatar" class="avatar">
+            <div class="col align-start gap10">
+                <h2>Admin</h2>
+                admin@nsbmevents.com
+                <a class="primary" href="new_event.php">add new event</a>
+            </div>
         </div>
-    </div>
+        <input class="button" name="sign-out" type="submit" value="Sign Out">
+    </form>
+    <br>
+</div>
 
-    <input class="auth-btn" name="sign-out" type="submit" value="Sign Out">
-</form>
 
 <?php include "../components/footer.php" ?>
 
