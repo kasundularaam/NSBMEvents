@@ -34,6 +34,29 @@ p{
     color: var(--dark);
 }
 
+.card-image{
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.card-description{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input{
+    color: var(--darker);
+    padding: 10px 20px;
+    font-size: large;
+    border: 0.5px solid var(--shaded);
+    border-radius: 4px;
+    background-color: var(--lighter);
+}
+
 .card{
     background-color: var(--lighter);
     border-radius: 10px;
@@ -143,9 +166,9 @@ p{
     padding-right: 10px;
 }
 
-.padding-v20{
-    padding-top: 20px;
-    padding-bottom: 20px;
+.padding-h20{
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .padding-h40{
@@ -156,6 +179,22 @@ p{
 .padding-h60{
     padding-left: 60px;
     padding-right: 60px;
+}
+
+.radius2{
+    border-radius: 2px;
+}
+
+.radius4{
+    border-radius: 4px;
+}
+
+.radius10{
+    border-radius: 10px;
+}
+
+.margin-auto{
+    margin: auto;
 }
 
 .width100{
@@ -184,6 +223,14 @@ p{
 
 .height25{
     height: 25%;
+}
+
+.max-content{
+    width: max-content;
+}
+
+.fit-content{
+    width: fit-content;
 }
 
 .primary{
@@ -229,6 +276,22 @@ p{
 
 .bg-gold{
     background-color: var(--gold);
+}
+
+.bg-dark{
+    background-color: var(--dark);
+}
+
+.bg-darker{
+    background-color: var(--darker);
+}
+
+.bg-light{
+    background-color: var(--light);
+}
+
+.bg-lighter{
+    background-color: var(--lighter);
 }
 
 .bold{
@@ -278,20 +341,6 @@ p{
 
 .gold{
     color: var(--gold);
-}
-
-.card-image{
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.card-description{
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 

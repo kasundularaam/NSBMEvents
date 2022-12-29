@@ -66,29 +66,32 @@ if (isset($_POST["submit"])) {
 <?php $page = "Log In";
 include("../components/header.php"); ?>
 
+<br>
 
-<form class="auth-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-
-    <h2>Log In</h2>
-
-    <div class="input-field">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php echo $email ?>">
-        <div class="input-error"><?php echo $errors["email"] ?></div>
+<form class="card margin-auto col max-content padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+    <br>
+    <h2 class="primary">Log In</h2>
+    <hr class="width100">
+    <br>
+    <div class="f-large col align-start gap10">
+        <label class="dark" for="email">Email</label>
+        <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+        <div class="red"><?php echo $errors["email"] ?></div>
     </div>
-
-    <div class="input-field">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" value="<?php echo $password ?>">
-        <div class="input-error"><?php echo $errors["password"] ?>
+    <br>
+    <div class="f-large col align-start gap10">
+        <label class="dark" for="password">Password</label>
+        <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
+        <div class="red"><?php echo $errors["password"] ?>
         </div>
     </div>
-
-    <input class="auth-btn" type="submit" name="submit" value="Log In">
-
-    <div class="else">If you don't have an account <a href="./sign_in.php">Sign In</a></div>
-    <div class="else">Log In as a <a href="./admin_login.php">admin</a></div>
-
+    <br>
+    <input class="button" type="submit" name="submit" value="Log In">
+    <br>
+    <div class="else">If you don't have an account <a class="primary" href="./sign_in.php">Sign In</a></div>
+    <hr class="width100">
+    <div class="else">Log In as a <a class="primary" href="./admin_login.php">admin</a></div>
+    <br>
 </form>
 
 <?php include "../components/footer.php" ?>
