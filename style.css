@@ -89,6 +89,10 @@ p{
     align-items: center;
 }
 
+.hide{
+    display: none;
+}
+
 .align-center{
     align-items: center;
 }
@@ -99,6 +103,10 @@ p{
 
 .align-end{
     align-items: flex-end;
+}
+
+.align-stretch{
+    align-items: stretch;
 }
 
 .space-between{
@@ -195,6 +203,14 @@ p{
 
 .margin-auto{
     margin: auto;
+}
+
+.m-auto-right{
+    margin-right: auto;
+}
+
+.m-auto-left{
+    margin-left: auto;
 }
 
 .width100{

@@ -184,115 +184,119 @@ if (isset($_POST["submit"])) {
 <?php $page = "New Event";
 include("../components/header.php"); ?>
 
-<form class="event-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-    <h2>Add New Event</h2>
-    <div class="row">
-        <div class="column">
-            <div class="input-field">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="<?php echo $title ?>">
-                <div class="input-error"><?php echo $errors["title"] ?></div>
-            </div>
-            <div class="input-field">
-                <label for="place">Place</label>
-                <input type="text" name="place" id="place" value="<?php echo $place ?>">
-                <div class="input-error"><?php echo $errors["place"] ?></div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="input-field">
-                <label for="imageUrl">Image Url</label>
-                <input type="url" name="imageUrl" id="imageUrl" value="<?php echo $imageUrl ?>">
-                <div class="input-error"><?php echo $errors["imageUrl"] ?></div>
-            </div>
-            <div class="input-field">
-                <label for="date">Date</label>
-                <input type="date" name="date" id="date" value="<?php echo $date ?>">
-                <div class="input-error"><?php echo $errors["date"] ?></div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="input-field">
-                <label for="organizedBy">Organized By</label>
-                <input type="text" name="organizedBy" id="organizedBy" value="<?php echo $organizedBy ?>">
-                <div class="input-error"><?php echo $errors["organizedBy"] ?></div>
-            </div>
+<br>
 
-            <div class="input-field">
-                <label for="time">Time</label>
-                <input type="time" name="time" id="time" value="<?php echo $time ?>">
-                <div class="input-error"><?php echo $errors["time"] ?></div>
+<form class="card margin-auto fit-content padding-h20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+    <br>
+    <h2 class="primary">Add New Event</h2>
+    <hr>
+    <div class="row gap50">
+        <div class="col align-start">
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="title">Title</label>
+                <input class="input" type="text" name="title" id="title" value="<?php echo $title ?>">
+                <div class="red"><?php echo $errors["title"] ?></div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="place">Place</label>
+                <input class="input" type="text" name="place" id="place" value="<?php echo $place ?>">
+                <div class="red"><?php echo $errors["place"] ?></div>
+            </div>
+        </div>
+        <div class="col align-start">
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="imageUrl">Image Url</label>
+                <input class="input" type="url" name="imageUrl" id="imageUrl" value="<?php echo $imageUrl ?>">
+                <div class="red"><?php echo $errors["imageUrl"] ?></div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="date">Date</label>
+                <input class="input" type="date" name="date" id="date" value="<?php echo $date ?>">
+                <div class="red"><?php echo $errors["date"] ?></div>
+            </div>
+        </div>
+        <div class="col align-start">
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="organizedBy">Organized By</label>
+                <input class="input" type="text" name="organizedBy" id="organizedBy" value="<?php echo $organizedBy ?>">
+                <div class="red"><?php echo $errors["organizedBy"] ?></div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="time">Time</label>
+                <input class="input" type="time" name="time" id="time" value="<?php echo $time ?>">
+                <div class="red"><?php echo $errors["time"] ?></div>
             </div>
 
         </div>
     </div>
-
-    <div class="input-field">
-        <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"><?php echo $description ?></textarea>
-        <div class="input-error"><?php echo $errors["description"] ?></div>
+    <hr>
+    <div class="f-large col align-stretch gap10">
+        <label class="dark" for="description">Description</label>
+        <textarea class="input" name="description" id="description" cols="30" rows="10"><?php echo $description ?></textarea>
+        <div class="red"><?php echo $errors["description"] ?></div>
     </div>
-
-    <div class="input-field">
-        <label for="">Entrance</label>
-        <div class="ticket-input-field">
-
-
-            <div class="checkbox-field">
-                <input type="checkbox" name="free" id="free" value="free">
+    <hr>
+    <div class="f-large col align-stretch gap10">
+        <label class="dark" for="">Entrance</label>
+        <div class="card padding-v10 padding-h20 radius4 row space-between">
+            <div class="row gap10 dark">
+                <input class="icon-smaller" type="checkbox" name="free" id="free" value="free">
                 <label for="free">Free</label>
             </div>
         </div>
 
-        <div class="ticket-input-field">
-
-            <div class="checkbox-field" onclick="myFunction('generalAdmission', 'ticket-inputs-GA')">
-                <input type="checkbox" name="generalAdmission" id="generalAdmission" value="generalAdmission">
+        <div class="card padding-v10 padding-h20 radius4 row space-between">
+            <div class="row gap10 dark" onclick="myFunction('generalAdmission', 'ticket-inputs-GA')">
+                <input class="icon-smaller" type="checkbox" name="generalAdmission" id="generalAdmission" value="generalAdmission">
                 <label for="generalAdmission">General Admission</label>
             </div>
-            <div class="ticket-inputs" id="ticket-inputs-GA">
-                <div class="input-field">
-                    <label for="priceGA">Price</label>
-                    <input type="number" name="priceGA" id="priceGA" value="<?php echo $priceGA ?>">
-                    <div class="input-error"><?php echo $errors["priceGA"] ?></div>
+            <div class="hide row gap20" id="ticket-inputs-GA">
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="priceGA">Price</label>
+                    <input class="input" type="number" name="priceGA" id="priceGA" value="<?php echo $priceGA ?>">
+                    <div class="red"><?php echo $errors["priceGA"] ?></div>
                 </div>
-                <div class="input-field">
-                    <label for="limitGA">Limit</label>
-                    <input type="number" name="limitGA" id="limitGA" value="<?php echo $limitGA ?>">
-                    <div class="input-error"><?php echo $errors["limitGA"] ?></div>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="limitGA">Limit</label>
+                    <input class="input" type="number" name="limitGA" id="limitGA" value="<?php echo $limitGA ?>">
+                    <div class="red"><?php echo $errors["limitGA"] ?></div>
                 </div>
             </div>
 
         </div>
 
-        <div class="ticket-input-field">
-            <div class="checkbox-field" onclick="myFunction('vipPass', 'ticket-inputs-VIP')">
-                <input type="checkbox" name="vipPass" id="vipPass" value="vipPass">
+        <div class="card padding-v10 padding-h20 radius4 row space-between">
+            <div class="row gap10 dark" onclick="myFunction('vipPass', 'ticket-inputs-VIP')">
+                <input class="icon-smaller" type="checkbox" name="vipPass" id="vipPass" value="vipPass">
                 <label for="vipPass">VIP Pass</label>
             </div>
 
-            <div class="ticket-inputs" id="ticket-inputs-VIP">
+            <div class="hide row gap20" id="ticket-inputs-VIP">
 
-                <div class="input-field">
-                    <label for="priceVIP">Price</label>
-                    <input type="number" name="priceVIP" id="priceVIP" value="<?php echo $priceVIP ?>">
-                    <div class="input-error"><?php echo $errors["priceVIP"] ?></div>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="priceVIP">Price</label>
+                    <input class="input" type="number" name="priceVIP" id="priceVIP" value="<?php echo $priceVIP ?>">
+                    <div class="red"><?php echo $errors["priceVIP"] ?></div>
                 </div>
-                <div class="input-field">
-                    <label for="limitVIP">Limit</label>
-                    <input type="number" name="limitVIP" id="limitVIP" value="<?php echo $limitVIP ?>">
-                    <div class="input-error"><?php echo $errors["limitVIP"] ?></div>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="limitVIP">Limit</label>
+                    <input class="input" type="number" name="limitVIP" id="limitVIP" value="<?php echo $limitVIP ?>">
+                    <div class="red"><?php echo $errors["limitVIP"] ?></div>
                 </div>
-
             </div>
         </div>
         <div class="input-error"><?php echo $errors["entrance"] ?></div>
     </div>
-
-    <input class="auth-btn" type="submit" name="submit" value="Submit">
-
+    <hr>
+    <div class="width100 row align-end">
+        <input class="button m-auto-left" type="submit" name="submit" value="Submit">
+    </div>
+    <br>
 </form>
-
+<br>
 <script>
     function myFunction(id, item) {
         var checkBox = document.getElementById(id);
