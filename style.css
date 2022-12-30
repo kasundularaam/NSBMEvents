@@ -96,6 +96,15 @@ hr{
     color: var(--lighter);
 }
 
+.avatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 2px;
+    border: 5px solid var(--primary);
+}
+
 .container{
     padding: 0px 20px;
 }
@@ -320,6 +329,10 @@ hr{
     border-radius: 10px;
 }
 
+.no-border{
+    border: none;
+}
+
 .margin-auto{
     margin: auto;
 }
@@ -412,10 +425,21 @@ hr{
     overflow: scroll;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .background-img1{
     background-image: url("./images/background1.jpg");
     background-size: cover;
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
+}
+
+.background-img2{
+    background-image: url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
+    background-size: cover;
+    background-position:50% 50%;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,5,.7);
 }
 
 .primary{
@@ -542,97 +566,6 @@ hr{
 
 
 
-
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-
-
-
-
-.nav-bar .active{
-    background-color: var(--primary);
-    color: var(--lighter);
-    padding: 10px 20px;
-    border-radius: 50px;
-}
-
-.avatar {
-    vertical-align: middle;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    padding: 2px;
-    border: 5px solid var(--primary);
-}
-
-
-
-
-
-
-
-.ticket{
-    width: 1000px;
-    height: 250px;
-    background-color: var(--lighter);
-}
-
-.ticket .event-image{
-    width: 750px;
-    height: 250px;
-    object-fit: cover;
-}
-
-.ticket .qr{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 250px;
-    height: 250px;
-}
-
-.trans-container{
-    background-color: var(--darker);
-    opacity: 0.8;
-    width: 750px;
-    height: 40px;
-    left: 0;
-    bottom: 0;
-}
-
-.qr img{
-    width:90%;
-    height:90%;
-    object-fit: cover;
-}
-
-.ticket .type{
-    right: 270px;
-    bottom: 3px;
-}
-
-.ticket .event-title{
-    bottom: 0px;
-    left: 0px;
-    padding: 3px 20px;
-    color: var(--primary);
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.ticket .icon-text{
-    font-size: 28px;
-}
-
-.ticket .icon{
-    width: 30px;
-    height: 30px;
-}
-
-.welcome-view img{
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-}
 
 @media (max-width: 1000px) {
     .events-grid {

@@ -94,13 +94,19 @@ $events = getAllEvents();
 
 
 
-<div class="welcome-view">
-  <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="">
+<div class="width100 height400px background-img2">
+  <div class="padding-h40 col justify-center height100 gap20">
+    <h1 class="lighter">Lorem ipsum dolor sit amet consectetur adipiscing elit</h1>
+    <p class="light text-center">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
+  </div>
 </div>
 
-<div class="container">
+<div class="padding-h20">
   <br>
-  <h2>FEATURED EVENTS</h2>
+  <div class="row space-between">
+    <h2>FEATURED EVENTS</h2>
+    <a class="primary f-larger bold" href="events.php">SEE ALL</a>
+  </div>
   <br>
   <div class="grid grid-col3 gap20">
 

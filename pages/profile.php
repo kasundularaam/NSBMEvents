@@ -155,7 +155,10 @@ $bookings = getBookings($user["indexNo"]);
             </div>
         </div>
 
-        <input class="button bg-red" name="sign-out" type="submit" value="Sign Out">
+        <div class="row">
+            <img class="icon-smaller" src="../images/exit.png" alt="">
+            <input class="no-border red bg-lighter f-medium pointer bold" name="sign-out" type="submit" value="Sign Out">
+        </div>
 
     </form>
     <br>
