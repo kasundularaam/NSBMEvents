@@ -143,56 +143,52 @@ if (isset($_POST["submit"])) {
 <!-- PRESENTATION -->
 
 
-<br>
-<div class="rel width100">
-    <img class="width100 stick" src="../images/background1.jpg" alt="">
-    <div class="width100 abs top-c">
-        <br>
-        <div class="padding-h40 row space-between">
-            <div></div>
+<div class="background-img1">
+    <br>
+    <div class="padding-h40 row space-between">
+        <div></div>
 
-            <form class="card col max-content padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                <br>
-                <h2 class="primary">Sign In</h2>
-                <hr class="width100">
-                <br>
-                <div class="f-large col align-start gap10">
-                    <label class="dark" for="indexNo">Index No</label>
-                    <input class="input" type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
-                    <div class="red"><?php echo $errors["indexNo"] ?>
-                    </div>
+        <form class="card col padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+            <br>
+            <h2 class="primary">Sign In</h2>
+            <hr class="width100">
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="indexNo">Index No</label>
+                <input class="input" type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
+                <div class="red"><?php echo $errors["indexNo"] ?>
                 </div>
-                <br>
-                <div class="f-large col align-start gap10">
-                    <label class="dark" for="name">Name</label>
-                    <input class="input" type="text" name="name" id="name" value="<?php echo $name ?>">
-                    <div class="red"><?php echo $errors["name"] ?></div>
-                </div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="name">Name</label>
+                <input class="input" type="text" name="name" id="name" value="<?php echo $name ?>">
+                <div class="red"><?php echo $errors["name"] ?></div>
+            </div>
 
-                <br>
-                <div class="f-large col align-start gap10">
-                    <label class="dark" for="email">Email</label>
-                    <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
-                    <div class="red"><?php echo $errors["email"] ?></div>
-                </div>
-                <br>
-                <div class="f-large col align-start gap10">
-                    <label class="dark" for="password">Password</label>
-                    <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
-                    <div class="red"><?php echo $errors["password"] ?></div>
-                </div>
-                <br>
-                <input class="button" type="submit" name="submit" value="Sign In">
-                <div class="red"><?php echo $serverError ?></div>
-                <hr class="width100">
-                <div class="dark">If you already have an account <a class="primary" href="./login.php">Log In</a></div>
-                <br>
-            </form>
-        </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="email">Email</label>
+                <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+                <div class="red"><?php echo $errors["email"] ?></div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="password">Password</label>
+                <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
+                <div class="red"><?php echo $errors["password"] ?></div>
+            </div>
+            <br>
+            <input class="button" type="submit" name="submit" value="Sign In">
+            <div class="red"><?php echo $serverError ?></div>
+            <hr class="width100">
+            <div class="dark">If you already have an account <a class="primary" href="./login.php">Log In</a></div>
+            <br>
+        </form>
     </div>
     <br>
 </div>
-<br>
+
 <?php include "../components/footer.php" ?>
 
 </html>

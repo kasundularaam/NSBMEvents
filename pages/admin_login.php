@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<?php include "../components/header.php" ?>
+
 <?php
 
 $hcEmail = "admin@nsbmevents.com";
@@ -43,36 +49,38 @@ if (isset($_POST["submit"])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- PRESENTATION -->
 
-
-<?php include "../components/header.php" ?>
-<br>
-<form class="card margin-auto col max-content padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+<div class="background-img1">
     <br>
-    <h2 class="primary">Admin Log In</h2>
-    <hr class="width100">
-    <br>
-    <div class="f-large col align-start gap10">
-        <label class="dark" for="email">Email</label>
-        <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
-        <div class="red"><?php echo $errors["email"] ?></div>
+    <div class="row space-between padding-h40">
+        <div></div>
+        <form class="card col padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+            <br>
+            <h2 class="primary">Admin Log In</h2>
+            <hr class="width100">
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="email">Email</label>
+                <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+                <div class="red"><?php echo $errors["email"] ?></div>
+            </div>
+            <br>
+            <div class="f-large col align-start gap10">
+                <label class="dark" for="password">Password</label>
+                <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
+                <div class="red"><?php echo $errors["password"] ?>
+                </div>
+            </div>
+            <br>
+            <input class="button" type="submit" name="submit" value="Log In">
+            <hr class="width100">
+            <div class="dark">Log In as a <a class="primary" href="./login.php">user</a></div>
+            <br>
+        </form>
     </div>
     <br>
-    <div class="f-large col align-start gap10">
-        <label class="dark" for="password">Password</label>
-        <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
-        <div class="red"><?php echo $errors["password"] ?>
-        </div>
-    </div>
-    <br>
-    <input class="button" type="submit" name="submit" value="Log In">
-    <hr class="width100">
-    <div class="dark">Log In as a <a class="primary" href="./login.php">user</a></div>
-    <br>
-</form>
-<br>
+</div>
 
 <?php include "../components/footer.php" ?>
 
