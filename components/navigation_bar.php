@@ -4,7 +4,7 @@ function isActive($active)
 {
     global $page;
     if ($active == $page) {
-        echo "class='active'";
+        echo "class='nav-bar-active'";
     }
 }
 
@@ -12,10 +12,10 @@ session_start();
 $sessionIndexNo = $_SESSION["indexNo"] ?? "Guest";
 ?>
 
-<nav class="nav-bar">
+<nav class="row space-between padding-h40 padding-v20">
     <h2> <a href="./index.php">NSBM EVENTS</a></h2>
-    <ul>
-        <li> <a href='./index.php' <?php isActive("NSBM Events"); ?>>Home</a> </li>
+    <ul class="no-style-type row gap20">
+        <li><a href='./index.php' <?php isActive("NSBM Events"); ?>>Home</a> </li>
         <li><a href="./about_us.php" <?php isActive("About Us"); ?>>About Us</a></li>
         <li><a href="./about_nsbm.php" <?php isActive("About NSBM"); ?>>About NSBM</a></li>
         <li><a href="./contact_us.php" <?php isActive("Contact Us"); ?>>Contact Us</a></li>

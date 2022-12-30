@@ -89,6 +89,13 @@ hr{
     background-color: var(--primary);
 }
 
+.nav-bar-active{
+    background-color: var(--primary);
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: var(--lighter);
+}
+
 .container{
     padding: 0px 20px;
 }
@@ -526,31 +533,6 @@ hr{
 
 /* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
 
-nav{
-    padding: 10px 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav ul{
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
-nav h2 a{
-    text-decoration: none;
-    color: var(--darker);
-}
-
-nav ul li a{
-    color:var(--darker);
-    text-decoration: none;
-    
-}
 
 
 
