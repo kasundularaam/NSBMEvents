@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page = "New Event";
+include("../components/header.php"); ?>
+
 <?php
 
 require("../config/database_helper.php");
@@ -5,9 +11,8 @@ require("../config/database_helper.php");
 
 function authorize()
 {
-    session_start();
-    $indexNo = $_SESSION["indexNo"];
-    if ($indexNo != "Admin") {
+    global $sessionIndexNo;
+    if ($sessionIndexNo != "Admin") {
         header("Location: index.php");
     }
 }
@@ -173,16 +178,8 @@ if (isset($_POST["submit"])) {
 ?>
 
 
+<!-- PRESENTATION -->
 
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<?php $page = "New Event";
-include("../components/header.php"); ?>
 
 <br>
 

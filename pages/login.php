@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page = "Log In";
+include("../components/header.php"); ?>
+
 <?php
 
 require("../config/database_helper.php");
@@ -58,13 +64,8 @@ if (isset($_POST["submit"])) {
 ?>
 
 
+<!-- PRESENTATION -->
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<?php $page = "Log In";
-include("../components/header.php"); ?>
 
 <br>
 

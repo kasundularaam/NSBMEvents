@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page = "Profile";
+include("../components/header.php"); ?>
+
 <?php
 
 require("../config/database_helper.php");
@@ -12,8 +18,7 @@ function signOut()
 
 function getUser()
 {
-    session_start();
-    $indexNo = $_SESSION["indexNo"];
+    global $sessionIndexNo;
 
     try {
         $helper = new DatabaseHelper();
@@ -21,7 +26,7 @@ function getUser()
         $helper->connect();
 
         $sql = "SELECT * FROM users WHERE indexNo = :indexNo";
-        $params = ["indexNo" => $indexNo];
+        $params = ["indexNo" => $sessionIndexNo];
         $stmt = $helper->query($sql, $params);
         $user = $stmt->fetch();
         $helper->close();
@@ -144,11 +149,9 @@ $bookings = getBookings($user["indexNo"]);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<?php $page = "Profile";
-include("../components/header.php"); ?>
+<!-- PRESENTATION -->
+
 
 <script src="../html2canvas.js"></script>
 <script>

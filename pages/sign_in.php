@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page = "Sign In";
+include("../components/header.php"); ?>
+
 <?php
 
 require("../config/database_helper.php");
@@ -134,54 +140,59 @@ if (isset($_POST["submit"])) {
 
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<?php $page = "Sign In";
-include("../components/header.php"); ?>
+<!-- PRESENTATION -->
 
 
-<form class="auth-form" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+<br>
+<div class="rel width100">
+    <img class="width100 stick" src="../images/background1.jpg" alt="">
+    <div class="width100 abs top-c">
+        <br>
+        <div class="padding-h40 row space-between">
+            <div></div>
 
-    <h2>Sign In</h2>
+            <form class="card col max-content padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+                <br>
+                <h2 class="primary">Sign In</h2>
+                <hr class="width100">
+                <br>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="indexNo">Index No</label>
+                    <input class="input" type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
+                    <div class="red"><?php echo $errors["indexNo"] ?>
+                    </div>
+                </div>
+                <br>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="name">Name</label>
+                    <input class="input" type="text" name="name" id="name" value="<?php echo $name ?>">
+                    <div class="red"><?php echo $errors["name"] ?></div>
+                </div>
 
-    <div class="input-field">
-        <label for="indexNo">Index No</label>
-        <input type="text" name="indexNo" id="indexNo" value="<?php echo $indexNo ?>">
-        <div class="input-error"><?php echo $errors["indexNo"] ?>
+                <br>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="email">Email</label>
+                    <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+                    <div class="red"><?php echo $errors["email"] ?></div>
+                </div>
+                <br>
+                <div class="f-large col align-start gap10">
+                    <label class="dark" for="password">Password</label>
+                    <input class="input" type="password" name="password" id="password" value="<?php echo $password ?>">
+                    <div class="red"><?php echo $errors["password"] ?></div>
+                </div>
+                <br>
+                <input class="button" type="submit" name="submit" value="Sign In">
+                <div class="red"><?php echo $serverError ?></div>
+                <hr class="width100">
+                <div class="dark">If you already have an account <a class="primary" href="./login.php">Log In</a></div>
+                <br>
+            </form>
         </div>
     </div>
-
-    <div class="input-field">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?php echo $name ?>">
-        <div class="input-error"><?php echo $errors["name"] ?></div>
-    </div>
-
-
-    <div class="input-field">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?php echo $email ?>">
-        <div class="input-error"><?php echo $errors["email"] ?></div>
-    </div>
-
-    <div class="input-field">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" value="<?php echo $password ?>">
-        <div class="input-error"><?php echo $errors["password"] ?>
-        </div>
-    </div>
-
-
-    <input class="auth-btn" type="submit" name="submit" value="Sign In">
-
-    <div class="input-error"><?php echo $serverError ?></div>
-
-    <div class="else">If you already have an account <a href="./login.php">Log In</a></div>
-
-</form>
-
+    <br>
+</div>
+<br>
 <?php include "../components/footer.php" ?>
 
 </html>

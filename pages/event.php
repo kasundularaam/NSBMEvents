@@ -1,15 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page = "Event";
+include("../components/header.php"); ?>
+
 <?php
 require("../config/database_helper.php");
 
+global $sessionIndexNo;
+
 $eventId = $_GET['eventId'];
 $error = "";
-
-function getUserId()
-{
-    session_start();
-    $indexNo = $_SESSION["indexNo"] ?? "Guest";
-    return $indexNo;
-}
 
 function getEvent($eventId)
 {
@@ -126,8 +127,6 @@ function buyTicket($userId, $ticketId)
     }
 }
 
-
-
 if (isset($_POST["generalBuy"])) {
     buy();
 }
@@ -137,14 +136,10 @@ if (isset($_POST["vipBuy"])) {
 ?>
 
 
+<!-- PRESENTATION -->
 
-<!DOCTYPE html>
-<html lang="en">
 
-<?php $page = "Event";
-include("../components/header.php"); ?>
-
-<img class="event-top-img" src="<?php echo $event["imageUrl"] ?>" alt="">
+<img class="width100 height400px cover" src="<?php echo $event["imageUrl"] ?>" alt="">
 
 <div class="container">
     <br>
@@ -211,15 +206,15 @@ include("../components/header.php"); ?>
                     <?php endif; ?>
                 </div>
                 <hr>
-                <div class="row space-between gap20">
+                <div class="row space-between gap10">
                     <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
                         <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "generalAdmission")["ticketId"]; ?>">
-                        <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                        <input type="hidden" name="userId" value="<?php echo $sessionIndexNo; ?>">
                         <input class="button bg-red" name="generalBuy" type="submit" value="BUY GENERAL">
                     </form>
                     <form action="<?php echo $_SERVER['PHP_SELF'] . "?eventId=" . $eventId ?>" method="post">
                         <input type="hidden" name="ticketId" value="<?php echo getTicket($event, "vipPass")["ticketId"]; ?>">
-                        <input type="hidden" name="userId" value="<?php echo getUserId(); ?>">
+                        <input type="hidden" name="userId" value="<?php echo $sessionIndexNo; ?>">
                         <input class="button bg-gold" name="vipBuy" type="submit" value="BUY VIP PASS">
                     </form>
                 </div>

@@ -20,10 +20,15 @@ body{
     background-color: var(--light);
 }
 
-h1,h2,h3,h4,h5,h6,p{
+h1,h2,h3,h4,h5,h6,p, a{
     padding: 0px;
     margin: 0px;
     
+}
+
+a{
+    text-decoration: none;
+    color: var(--darker);
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -32,6 +37,17 @@ h1,h2,h3,h4,h5,h6{
 
 p{
     color: var(--dark);
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+hr{
+    border: none;
+    border-top: 1px solid var(--shaded);
+    margin: 15px 0px;
 }
 
 .card-image{
@@ -77,6 +93,14 @@ p{
     padding: 0px 20px;
 }
 
+.hr-dark{
+    border-top: 1px solid var(--dark);
+}
+
+.hr-darker{
+    border-top: 1px solid var(--darker);
+}
+
 .row{
     display: flex;
     flex-direction: row;
@@ -87,6 +111,26 @@ p{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.flex1{
+    flex: 1;
+}
+
+.flex2{
+    flex: 2;
+}
+
+.flex3{
+    flex: 3;
+}
+
+.flex4{
+    flex: 4;
+}
+
+.flex5{
+    flex: 5;
 }
 
 .grid{
@@ -103,6 +147,42 @@ p{
 
 .grid-col4{
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.rel{
+    position: relative;
+}
+
+.abs{
+    position: absolute;
+}
+
+.fixed{
+    position: fixed;
+}
+
+.static{
+    position: static;
+}
+
+.stick{
+    position: sticky;
+}
+
+.top-c{
+    top: 0px;
+}
+
+.bottom-c{
+    bottom: 0px;
+}
+
+.left-c{
+    left: 0px;
+}
+
+.right-c{
+    right: 0px;
 }
 
 .hide{
@@ -135,6 +215,10 @@ p{
 
 .space-evenly{
     justify-content: space-evenly;
+}
+
+.text-center{
+    text-align: center;
 }
 
 .gap10{
@@ -241,6 +325,10 @@ p{
     width: 50%;
 }
 
+.width25{
+    width: 25%;
+}
+
 .height100{
     height: 100%;
 }
@@ -249,12 +337,32 @@ p{
     height: 75%;
 }
 
-.height100{
-    height: 100%;
+.height50{
+    height: 50%;
 }
 
 .height25{
     height: 25%;
+}
+
+.height100px{
+    height: 100px;
+}
+
+.height200px{
+    height: 200px;
+}
+
+.height300px{
+    height: 300px;
+}
+
+.height400px{
+    height: 400px;
+}
+
+.cover{
+    object-fit: cover;
 }
 
 .max-content{
@@ -263,6 +371,10 @@ p{
 
 .fit-content{
     width: fit-content;
+}
+
+.min-content{
+    width:min-content;
 }
 
 .primary{
@@ -326,8 +438,20 @@ p{
     background-color: var(--lighter);
 }
 
+.no-decoration{
+    text-decoration: none;
+}
+
+.no-style-type{
+    list-style-type: none;
+}
+
 .bold{
     font-weight: bold;
+}
+
+.f-small{
+    font-size: small;
 }
 
 .f-medium{
@@ -406,122 +530,13 @@ nav ul li a{
     
 }
 
-hr{
-    border-top: 1px solid var(--shaded);
-    margin: 15px 0px;
-}
+
 
 .nav-bar .active{
     background-color: var(--primary);
     color: var(--lighter);
     padding: 10px 20px;
     border-radius: 50px;
-}
-
-.top-image{
-    margin: auto;
-    display: block;
-    width: 1200px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
-.head-line{
-    width: 1200px;
-    margin: auto;
-    background-color: var(--darker);
-    border-radius: 10px;
-}
-
-.head-line h2{
-    color: var(--lighter);
-    padding: 20px 50px;
-    text-align: center;
-    font-style: italic;
-}
-
-
-.auth-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    border-radius: 10px;
-    padding: 40px 80px;
-    width: fit-content;
-    margin: auto;
-    border: var(--shaded) 0.5px solid;
-    background-color: var(--lighter)
-
-}
-
-.auth-form h2{
-    width: 100%;
-    display: block;
-    color: var(--dark);
-    text-align: left;
-    padding: 0px;
-    margin: 0px;
-}
-.input-field{
-    display:flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.input-field label{
-    color: var(--dark);
-}
-
-.input-field input,textarea{
-    padding: 10px 20px;
-    font-size: medium;
-    border-radius: 4px;
-    border: 1px solid var(--dark);
-    outline: none;
-    color: var(--darker);
-}
-
-.checkbox-field{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.checkbox-field label{
-    color: var(--dark);
-}
-
-.checkbox-field input{
-   width: 20px;
-   height: 20px;
-}
-
-.auth-btn{
-    display: flex;
-    justify-content: stretch;
-    padding: 10px 50px;
-    font-size: medium;
-    border-radius: 20px;
-    border: none;
-    color: var(--lighter);
-    background-color: var(--primary);
-}
-
-
-.input-error{
-    color: var(--error);
-}
-
-.auth-form .else{
-    color: var(--dark);
-    margin-top: 5px;
-}
-
-.auth-form .else a{
-    color: var(--primary);
-    text-decoration: none;
 }
 
 .avatar {
@@ -533,200 +548,11 @@ hr{
     border: 5px solid var(--primary);
 }
 
-.user-details-card{
-    max-width: 100%;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    margin: 20px;
-}
-
-.user-details-card .details-view{
-    display: flex;
-    gap: 30px;
-}
-
-.user-details-card .details-view .text-view h2{
-    padding: 0;
-    margin: 0;
-}
-
-.user-details-card .details-view .text-view{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-}
-
-.user-details-card .details-view .text-view a{
-    text-decoration: none;
-    color: var(--primary);
-}
-
-.event-form{
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    gap: 30px;
-    padding: 20px 40px;
-    margin: auto;
-    border-radius: 10px;
-    border: var(--shaded) 0.5px solid;
-    background-color: var(--lighter)
-}
-
-.event-form h2{
-    color: var(--darker);
-
-}
-
-.event-form .row{
-    display: flex;
-    gap: 100px;
-}
-
-.event-form .auth-btn{
-    margin-left: auto;
-}
 
 
-.event-form .column{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
 
-.ticket-input-field{
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: var(--shaded) 0.5px solid;
-    justify-content:space-between;
-}
 
-.ticket-input-field .ticket-inputs{
-    display: none;
-    gap: 10px;
 
-}
-
-.ticket-input-field .input-field{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-}
-
-.events-grid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-}
-
-.event-card{
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    border: 0.5px solid var(--shaded);
-    border-radius: 10px;
-    background-color: var(--lighter);
-}
-
-.event-card h2, p, h4, a{
-    color: var(--darker);
-    padding: 0px;
-    margin: 0px;
-    text-decoration: none;
-}
-
-.event-card p{
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.event-card .details{
-    padding: 20px 20px;
-
-}
-
-.event-card img{
-    width : 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.entrance-details{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: end;
-}
-
-.entrance-methods{
-    font-weight: bold;
-    font-size: large;
-}
-.free{
-    color: var(--primary);
-}
-
-.generalAdmission{
-    color: var(--generalAdmission);
-}
-
-.vipPass{
-    color: var(--vip);
-}
-
-.event-card .info{
-    display: flex;
-    gap: 20px;
-    color: var(--darker);
-}
-
-.icon-text{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.icon-text .icon{
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-.event-top-img{
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
-
-.buy-btn{
-    display: flex;
-    justify-content: stretch;
-    padding: 10px 20px;
-    font-size: medium;
-    font-weight: bold;
-    border-radius: 20px;
-    border: none;
-    color: var(--lighter);
-    
-}
-
-.vip-btn{
-    background-color: var(--vip);
-}
-
-.general-btn{
-    background-color: var(--generalAdmission);
-}
 
 .ticket{
     width: 1000px;
@@ -784,10 +610,6 @@ hr{
 .ticket .icon{
     width: 30px;
     height: 30px;
-}
-
-.welcome-view{
-
 }
 
 .welcome-view img{
