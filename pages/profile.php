@@ -104,22 +104,6 @@ function getBookingData($ticketId)
     $bookingData["bookingId"];
 }
 
-function getQrCode($bookingId)
-{
-    global $type;
-    $response = file_get_contents("https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$bookingId");
-    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($response);
-    return $base64;
-}
-
-function getEventImage($imageUrl)
-{
-    global $type;
-    $response = file_get_contents($imageUrl);
-    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($response);
-    return $base64;
-}
-
 function isGeneralAdmission($event)
 {
     if (!empty($event["generalAdmission"])) {
@@ -153,35 +137,14 @@ $bookings = getBookings($user["indexNo"]);
 <!-- PRESENTATION -->
 
 
-<script src="../html2canvas.js"></script>
-<script>
-    function downloadTicket(bookingId) {
-        window.scrollTo(0, 0);
-        html2canvas(document.getElementById("3"), {
-            // letterRendering: 1,
-            allowTaint: true,
-        }).then(function(canvas) {
-            var ticket = canvas.toDataURL("image/png", 0.9);
-            downloadURI("data:" + ticket, `${bookingId}.png`);
-        });
-    }
 
-    function downloadURI(uri, name) {
-        var link = document.createElement("a");
-        link.download = name;
-        link.href = uri;
-        link.click();
-    }
-</script>
+<div class="padding-h20">
 
+    <form class="card row space-between align-start padding-h20 padding-v20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
-<div class="container">
-
-    <form class="user-details-card card" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-
-        <div class="details-view">
+        <div class="row gap20">
             <img src="../images/user.png" alt="Avatar" class="avatar">
-            <div class="text-view">
+            <div class="col align-start gap10 dark">
                 <h2><?php echo $user["name"] ?></h2>
                 <div>
                     <?php echo $user["email"] ?>
@@ -192,98 +155,65 @@ $bookings = getBookings($user["indexNo"]);
             </div>
         </div>
 
-        <input class="auth-btn" name="sign-out" type="submit" value="Sign Out">
+        <input class="button bg-red" name="sign-out" type="submit" value="Sign Out">
+
     </form>
-
-
-    <div class="card">
-        <br>
-        <h2>Your Tickets</h2>
-        <br>
-
-
+    <br>
+    <hr>
+    <br>
+    <h2>Your Tickets</h2>
+    <br>
+    <div class="grid grid-col2 gap20">
         <?php foreach ($bookings as $booking) : ?>
             <?php $ticket = getTicketData($booking["ticketId"]); ?>
             <?php $event = getEventData($ticket["eventId"]); ?>
-            <div class="card row space-between">
-                <div class="booking-details col space-between">
+            <div class="card col align-start">
+                <br>
+                <div class="padding-h10">
                     <h2><?php echo $event["title"]; ?></h2>
-                    <div class="info col gap20">
-                        <div class="icon-text">
-                            <img class="icon" src="../images/calendar.png" alt="">
+                </div>
+                <br>
+                <div class="row width100">
+                    <img class="width100 height200px cover" src="<?php echo $event["imageUrl"]  ?>" alt="event">
+                    <img class="height200px cover" src="<?php echo "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $booking["bookingId"] ?>" alt="QR">
+                </div>
+                <br>
+                <div class="row space-between width100">
+                    <div class="row gap20 padding-h20">
+                        <div class="row dark gap10">
+                            <img class="icon-small" src="../images/calendar.png" alt="">
                             <?php echo date("d.m.Y", strtotime($event["date"])) . " at " . date('g:ia', strtotime($event["time"])); ?>
                         </div>
-                        <div class="icon-text">
-                            <img class="icon" src="../images/place.png" alt="">
+                        <div class="row dark gap10">
+                            <img class="icon-small" src="../images/place.png" alt="">
                             <?php echo $event["place"] ?>
                         </div>
                         <?php if ($ticket["type"] == "generalAdmission") : ?>
-                            <div class="generalAdmission entrance-methods">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/ticket.png" alt="">
-
-                                    <?php echo "Rs: " . $ticket["price"]; ?>
-                                </div>
+                            <div class="row gap10 red f-large bold">
+                                <img class="icon-small" src="../images/ticket.png" alt="">
+                                <?php echo "Rs: " . $ticket["price"]; ?>
                             </div>
                         <?php endif; ?>
 
                         <?php if ($ticket["type"] == "vipPass") : ?>
-                            <div class="vipPass entrance-methods">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/vip.png" alt="">
-                                    <?php echo "VIP Rs: " . $ticket["price"]; ?>
-                                </div>
+                            <div class="row gap10 gold f-large bold">
+                                <img class="icon-small" src="../images/vip.png" alt="">
+                                <?php echo "Rs: " . $ticket["price"]; ?>
                             </div>
                         <?php endif; ?>
                     </div>
-                    <button class="auth-btn " id="btn" onclick="downloadTicket();" class="btn">Download Ticket</button>
-                </div>
-
-
-                <div class="rel ticket" id="<?php echo $booking["bookingId"] ?>">
-                    <div class="row abs">
-                        <img crossOrigin="anonymous" class="event-image" src="<?php echo $event["imageUrl"]  ?>" alt="event">
-                        <div class="qr">
-                            <img crossOrigin="anonymous" src="<?php echo "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $booking["bookingId"] ?>" alt="QR">
-                        </div>
-                    </div>
-                    <div class="abs trans-container">
-                    </div>
-
-                    <div class="abs event-title">
-                        <?php echo $event["title"]; ?>
-                    </div>
-                    <div class="abs type">
-                        <?php if ($ticket["type"] == "generalAdmission") : ?>
-                            <div class="generalAdmission entrance-methods">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/ticket.png" alt="">
-
-                                    <?php echo "Rs: " . $ticket["price"]; ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-
-                        <?php if ($ticket["type"] == "vipPass") : ?>
-                            <div class="vipPass entrance-methods">
-                                <div class="icon-text">
-                                    <img class="icon" src="../images/vip.png" alt="">
-                                    <?php echo "VIP Rs: " . $ticket["price"]; ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-
+                    <div class="padding-h20">
+                        <a class="primary" href="event.php?eventId=<?php echo $event["eventId"]; ?>">More Details...</a>
                     </div>
                 </div>
+                <br>
             </div>
-
-            <br>
-
         <?php endforeach; ?>
-
     </div>
 
 </div>
+
+<br>
 
 
 <?php include "../components/footer.php" ?>

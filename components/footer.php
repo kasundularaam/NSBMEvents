@@ -38,7 +38,7 @@ global $sessionIndexNo;
         <hr class="hr-dark">
 
         <div class="shaded text-center f-medium">
-            Copyright &copy; 2017 All Rights Reserved by <a class="primary" href="./index.php"> nsbmevents.com</a>
+            Copyright &copy; 2022 All Rights Reserved by <a class="primary" href="./index.php"> nsbmevents.com</a>
         </div>
         <br>
     </div>

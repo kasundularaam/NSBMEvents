@@ -224,6 +224,18 @@ hr{
     justify-content: space-evenly;
 }
 
+.justify-start{
+    justify-content: flex-start;
+}
+
+.justify-end{
+    justify-content: flex-end;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
 .text-center{
     text-align: center;
 }
@@ -402,7 +414,7 @@ hr{
 
 .background-img1{
     background-image: url("./images/background1.jpg");
-    image-rendering: -webkit-optimize-contrast;
+    background-size: cover;
     box-shadow: inset 0 0 0 1000px rgba(0,0,0,.3);
 }
 
