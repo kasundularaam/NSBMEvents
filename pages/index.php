@@ -20,7 +20,7 @@ function getAllEvents()
 
     $helper->connect();
 
-    $sql = "SELECT * FROM events ORDER BY eventId DESC LIMIT 6 ";
+    $sql = "SELECT * FROM events ORDER BY eventId DESC LIMIT 6";
     $params = [];
     $stmt = $helper->query($sql, $params);
     $events = $stmt->fetchAll();
@@ -161,6 +161,19 @@ $events = getAllEvents();
   </div>
 </div>
 <br>
+
+<div class="width100 background-img3 padding-v40">
+  <div class="row space-around">
+    <img class="padding-h60 height400px width400px cover" src="../images/display_img1.jpg" alt="">
+    <div class="padding-h40 col align-start gap20">
+      <h1 class="lighter">Lorem ipsum dolor</h1>
+      <p class="light">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
+    </div>
+  </div>
+</div>
+
+
+
 <?php include "../components/footer.php" ?>
 
 </html>
