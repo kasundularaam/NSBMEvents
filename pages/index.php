@@ -12,7 +12,7 @@ $events = array();
 
 $error = "";
 
-function getAllEvents()
+function getFeaturedEvents()
 {
 
   try {
@@ -51,6 +51,37 @@ function getTicket($event, $type)
   }
 }
 
+function getAllEvents()
+{
+  try {
+    $helper = new DatabaseHelper();
+
+    $helper->connect();
+
+    $sql = "SELECT * FROM events ORDER BY eventId DESC";
+    $params = [];
+    $stmt = $helper->query($sql, $params);
+    $events = $stmt->fetchAll();
+    $helper->close();
+    return $events;
+  } catch (\Throwable $th) {
+    $error = $th->getMessage();
+  }
+}
+
+function getOrganizers($events)
+{
+  $organizers = array();
+  foreach ($events as $event) {
+    array_push($organizers, $event["organizedBy"]);
+  }
+  $organizers = array_unique($organizers);
+  return array_slice($organizers, 0, 4);
+}
+
+$allEvents = getAllEvents();
+
+
 function getEntranceMethods($event)
 {
   $entranceMethods = array();
@@ -86,7 +117,9 @@ function isVipPass($event)
   }
 }
 
-$events = getAllEvents();
+$events = getFeaturedEvents();
+$organizers = getOrganizers($allEvents);
+
 ?>
 
 
@@ -96,7 +129,7 @@ $events = getAllEvents();
 
 <div class="width100 height400px background-img2">
   <div class="padding-h40 col justify-center height100 gap20">
-    <h1 class="lighter">Lorem ipsum dolor sit amet consectetur adipiscing elit</h1>
+    <div class="lighter f-xxxlarge bold">Donsectetur adipiscing elit</div>
     <p class="light text-center">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
   </div>
 </div>
@@ -162,6 +195,7 @@ $events = getAllEvents();
 </div>
 <br>
 
+
 <div class="width100 background-img3 padding-v40">
   <div class="row space-around">
     <img class="padding-h60 height400px width400px cover" src="../images/display_img1.jpg" alt="">
@@ -169,6 +203,46 @@ $events = getAllEvents();
       <h1 class="lighter">Lorem ipsum dolor</h1>
       <p class="light">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
     </div>
+  </div>
+</div>
+
+<div class="bg-lighter padding-h40 col gap20">
+  <br>
+  <div class="col gap10 text-center">
+    <div class="f-xxlarge bold primary">SUBSCRIBE TO OUR NEWSLETTER</div>
+    <p>Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur.</p>
+  </div>
+  <hr class="width100">
+  <div class="row space-around width100">
+    <img class="width400px" src="../images/mailbox.png" alt="">
+    <div class="col">
+      <div class="f-large col gap10">
+        <label class="dark" for="email">Your Email</label>
+        <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+        <div class="red"><?php echo $errors["email"] ?></div>
+      </div>
+      <br>
+      <input class="button" type="submit" value="subscribe">
+    </div>
+  </div>
+</div>
+
+
+<div class="padding-h20 padding-v100 background-img5">
+  <div class="row space-around">
+
+    <div class="f-xxxlarge bold primary">OUR <br> MAIN <br> ORGANIZERS</div>
+
+    <div class="row">
+      <?php foreach ($organizers as $organizer) : ?>
+        <div class="col padding-h60 flex1">
+          <img class="width100px" src="../images/organizer.png" alt="">
+          <hr class="width100 hr-primary">
+          <h1><?php print_r($organizer); ?></h1>
+        </div>
+      <?php endforeach; ?>
+    </div>
+    <br>
   </div>
 </div>
 

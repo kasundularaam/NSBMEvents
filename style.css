@@ -117,6 +117,10 @@ hr{
     border-top: 1px solid var(--darker);
 }
 
+.hr-primary{
+    border-top: 1px solid var(--primary);
+}
+
 .row{
     display: flex;
     flex-direction: row;
@@ -297,6 +301,16 @@ hr{
     padding-bottom: 60px;
 }
 
+.padding-v80{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.padding-v100{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
 .padding-h10{
     padding-left: 10px;
     padding-right: 10px;
@@ -455,14 +469,28 @@ hr{
     background-image: url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80");
     background-size: cover;
     background-position:50% 50%;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,5,.7);
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
 }
 
 .background-img3{
     background-image: url("./images/background2.jpg");
     background-size: cover;
     background-position:50% 50%;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,5,.7);
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.7);
+}
+
+.background-img4{
+    background-image: url("./images/nsbm2.png");
+    background-size: cover;
+    background-position:50% 50%;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
+}
+
+.background-img5{
+    background-image: url("./images/background3.jpg");
+    background-size: cover;
+    background-position:50% 50%;
+    box-shadow: inset 0 0 0 1000px rgba(255,255,255,.8);
 }
 
 .primary{
@@ -558,6 +586,18 @@ hr{
     font-size:xx-large;
 }
 
+.f-xxxlarge{
+    font-size: 48px;
+}
+
+.f-xxxxlarge{
+    font-size: 72px;
+}
+
+.f-ultra{
+    font-size: 220px;
+}
+
 .icon-smaller{
     width: 16px;
     height: 16px;
@@ -586,9 +626,6 @@ hr{
 .gold{
     color: var(--gold);
 }
-
-
-
 
 @media (max-width: 1000px) {
     .events-grid {

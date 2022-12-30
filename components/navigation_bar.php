@@ -25,7 +25,7 @@ $sessionIndexNo = $_SESSION["indexNo"] ?? "Guest";
         <?php elseif ($sessionIndexNo == "Admin") : ?>
             <li><a href="./admin_profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>
         <?php else : ?>
-            <li><a href="./profile.php" <?php isActive("Profile"); ?>><?php echo $sessionIndexNo ?></a></li>
+            <li><a href="./profile.php" <?php isActive("Profile"); ?>>Profile</a></li>
         <?php endif; ?>
     </ul>
 </nav>
