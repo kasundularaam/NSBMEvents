@@ -89,6 +89,22 @@ p{
     align-items: center;
 }
 
+.grid{
+    display: grid;
+}
+
+.grid-col2{
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-col3{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-col4{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .hide{
     display: none;
 }

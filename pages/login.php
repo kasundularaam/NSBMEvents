@@ -88,11 +88,12 @@ include("../components/header.php"); ?>
     <br>
     <input class="button" type="submit" name="submit" value="Log In">
     <br>
-    <div class="else">If you don't have an account <a class="primary" href="./sign_in.php">Sign In</a></div>
+    <div class="dark">If you don't have an account <a class="primary" href="./sign_in.php">Sign In</a></div>
     <hr class="width100">
-    <div class="else">Log In as a <a class="primary" href="./admin_login.php">admin</a></div>
+    <div class="dark">Log In as an <a class="primary" href="./admin_login.php">admin</a></div>
     <br>
 </form>
+<br>
 
 <?php include "../components/footer.php" ?>
 

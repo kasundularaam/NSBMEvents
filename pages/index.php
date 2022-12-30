@@ -105,7 +105,7 @@ include("../components/header.php"); ?>
   <br>
   <h2>FEATURED EVENTS</h2>
   <br>
-  <div class="events-grid">
+  <div class="grid grid-col3 gap20">
 
     <?php foreach ($events as $event) : ?>
       <div class="card">
