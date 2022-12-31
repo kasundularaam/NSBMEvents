@@ -49,21 +49,11 @@ $team = array(
                 <div class="col padding-h20">
 
                     <div class="f-xlarge bold dark"><?php echo $member["name"]; ?></div>
-                    <br>
+                    <hr class="width100">
                     <div class="dark f-medium text-center">
                         <?php echo $member["about"]; ?>
                     </div>
 
-                    <hr class="width100">
-                    <a href="<?php echo $member["linkedin"]; ?>" target="_blank" rel="noopener noreferrer">
-                        <div class="row gap10 align-end">
-
-                            <img class="icon-small" src="../images/linkedin.png" alt="">
-                            <div class="dark f-large bold">
-                                Profile
-                            </div>
-                        </div>
-                    </a>
                 </div>
                 <br>
             </div>
