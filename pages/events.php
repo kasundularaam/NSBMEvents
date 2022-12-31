@@ -97,7 +97,7 @@ $events = getAllEvents();
 <div class="padding-h20">
 
     <br>
-    <div class="grid grid-col3 gap20">
+    <div class="grid grid-col3 gap20 events-grid">
 
         <?php foreach ($events as $event) : ?>
             <div class="card">

@@ -140,7 +140,7 @@ $bookings = getBookings($user["indexNo"]);
 
 <div class="padding-h20">
 
-    <form class="card row space-between align-start padding-h20 padding-v20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+    <form class="card row space-between align-start padding-h20 padding-v20 profile-view" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
         <div class="row gap20">
             <img src="../images/user.png" alt="Avatar" class="avatar">
@@ -166,7 +166,7 @@ $bookings = getBookings($user["indexNo"]);
     <br>
     <h2>Your Tickets</h2>
     <br>
-    <div class="grid grid-col2 gap20">
+    <div class="grid grid-col2 gap20 tickets-grid">
         <?php foreach ($bookings as $booking) : ?>
             <?php $ticket = getTicketData($booking["ticketId"]); ?>
             <?php $event = getEventData($ticket["eventId"]); ?>
@@ -177,12 +177,12 @@ $bookings = getBookings($user["indexNo"]);
                 </div>
                 <br>
                 <div class="row width100">
-                    <img class="width100 height200px cover" src="<?php echo $event["imageUrl"]  ?>" alt="event">
-                    <img class="height200px cover" src="<?php echo "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $booking["bookingId"] ?>" alt="QR">
+                    <img class="width100 height200px cover ticket-img" src="<?php echo $event["imageUrl"]  ?>" alt="event">
+                    <img class="height200px cover qr" src="<?php echo "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" . $booking["bookingId"] ?>" alt="QR">
                 </div>
                 <br>
-                <div class="row space-between width100">
-                    <div class="row gap20 padding-h20">
+                <div class="row space-between width100 ticket-details-wrap">
+                    <div class="row gap20 padding-h20 ticket-details">
                         <div class="row dark gap10">
                             <img class="icon-small" src="../images/calendar.png" alt="">
                             <?php echo date("d.m.Y", strtotime($event["date"])) . " at " . date('g:ia', strtotime($event["time"])); ?>

@@ -40,7 +40,7 @@ $team = array(
         Our Team
     </div>
     <br>
-    <div class="grid grid-col5 gap20">
+    <div class="grid grid-col5 gap20 team-grid">
 
         <?php foreach ($team as $member) : ?>
             <div class="card col">

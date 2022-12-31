@@ -129,7 +129,7 @@ $organizers = getOrganizers($allEvents);
 
 <div class="width100 height400px background-img2">
   <div class="padding-h40 col justify-center height100 gap20">
-    <div class="lighter f-xxxlarge bold">Donsectetur adipiscing elit</div>
+    <div class="lighter f-xxxlarge bold text-center">Donsectetur adipiscing elit</div>
     <p class="light text-center">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
   </div>
 </div>
@@ -141,7 +141,7 @@ $organizers = getOrganizers($allEvents);
     <a class="primary f-larger bold" href="events.php">SEE ALL</a>
   </div>
   <br>
-  <div class="grid grid-col3 gap20">
+  <div class="grid grid-col3 gap20 events-grid">
 
     <?php foreach ($events as $event) : ?>
       <div class="card">
@@ -196,7 +196,7 @@ $organizers = getOrganizers($allEvents);
 <br>
 
 
-<div class="width100 background-img3 padding-v40">
+<div class="width100 background-img3 padding-v40 display1">
   <div class="row space-around">
     <img class="padding-h60 height400px width400px cover" src="../images/display_img1.jpg" alt="">
     <div class="padding-h40 col align-start gap20">
@@ -226,12 +226,22 @@ $organizers = getOrganizers($allEvents);
 </div>
 
 
-<div class="padding-h20 padding-v100 background-img5">
-  <div class="row space-around">
+<div class="padding-h20 padding-v100 background-img5 organizers-container">
+  <div class="row space-around organizers">
 
-    <div class="f-xxxlarge bold primary">OUR <br> MAIN <br> ORGANIZERS</div>
+    <div class="f-xxxlarge bold primary title">
+      <div>
+        OUR
+      </div>
+      <div>
+        MAIN
+      </div>
+      <div>
+        ORGANIZERS
+      </div>
+    </div>
 
-    <div class="row">
+    <div class="row content">
       <?php foreach ($organizers as $organizer) : ?>
         <div class="col padding-h60 flex1">
           <img class="width100px" src="../images/organizer.png" alt="">

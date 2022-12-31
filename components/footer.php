@@ -10,13 +10,13 @@ global $sessionIndexNo;
     <br>
     <div class="padding-h40">
         <div class="row gap40">
-            <div class="col align-start flex1">
+            <div class="col align-start flex1 footer-about">
                 <h3 class="shaded">About</h3>
                 <br>
                 <p class="dark">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
             </div>
 
-            <div class="col align-start">
+            <div class="col align-start footer-nav">
                 <h3 class="shaded">Quick Links</h3>
                 <br>
                 <ul class="no-style-type col gap10 align-start">

@@ -12,9 +12,9 @@ session_start();
 $sessionIndexNo = $_SESSION["indexNo"] ?? "Guest";
 ?>
 
-<nav class="row space-between padding-h40 padding-v20">
+<nav class="row space-between padding-h40 padding-v20 top-nav">
     <h2> <a href="./index.php">NSBM EVENTS</a></h2>
-    <ul class="no-style-type row gap20">
+    <ul class="no-style-type row gap20 top-nav-links">
         <li><a href='./index.php' <?php isActive("NSBM Events"); ?>>Home</a> </li>
         <li><a href="./about_us.php" <?php isActive("About Us"); ?>>About Us</a></li>
         <li><a href="./about_nsbm.php" <?php isActive("About NSBM"); ?>>About NSBM</a></li>

@@ -56,7 +56,7 @@ if (isset($_POST["submit"])) {
 </div>
 <br>
 
-<div class="row space-between padding-h40 gap40 align-start">
+<div class="row space-between padding-h40 gap40 align-start contact-content">
     <div class="dark f-large">
         We value your feedback and inquiries and are happy to assist you with any questions or concerns you may have.
         <br>
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
         <br>
         We look forward to hearing from you and working with you to resolve any issues or answer any questions you may have. Thank you for choosing our company, and we hope to hear from you soon!
     </div>
-    <form class="card col padding-h60 align-start fit-content margin-auto" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+    <form class="card col padding-h60 align-start margin-auto" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
         <br>
         <h2 class="primary margin-auto">Contact Form</h2>
         <hr class="width100">

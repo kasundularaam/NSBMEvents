@@ -53,7 +53,7 @@ if (isset($_POST["submit"])) {
 
 <div class="background-img1">
     <br>
-    <div class="row space-between padding-h40">
+    <div class="row space-between padding-h40 auth-form">
         <div></div>
         <form class="card col padding-h60" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <br>
