@@ -13,7 +13,7 @@ global $sessionIndexNo;
             <div class="col align-start flex1 footer-about">
                 <h3 class="shaded">About</h3>
                 <br>
-                <p class="dark">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+                <p class="dark">green tickets is the first Lanka's ticket selling platform in the university level.We are the official marketplace provide you with a secure and safe platform to buy and sell tickets in NSBM Green University, If you are looking for tickets for upcoming events green ticket is the place to find them by giving our customers the maximum service with a new experience in online ticket purchasing.We're constantly rolling out new features to improve our service with an outstanding selection of tickets.</p>
             </div>
 
             <div class="col align-start footer-nav">

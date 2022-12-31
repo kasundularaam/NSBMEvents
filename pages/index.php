@@ -129,8 +129,8 @@ $organizers = getOrganizers($allEvents);
 
 <div class="width100 height400px background-img2">
   <div class="padding-h40 col justify-center height100 gap20">
-    <div class="lighter f-xxxlarge bold text-center">Donsectetur adipiscing elit</div>
-    <p class="light text-center">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
+    <div class="lighter f-xxxlarge bold text-center">GREEN TICKETS</div>
+    <p class="light text-center">book tickets online in NSBM events, movie, drama, concert and more...</p>
   </div>
 </div>
 
@@ -198,10 +198,10 @@ $organizers = getOrganizers($allEvents);
 
 <div class="width100 background-img3 padding-v40 display1">
   <div class="row space-around">
-    <img class="padding-h60 height400px width400px cover" src="../images/display_img1.jpg" alt="">
+    <img class="padding-h60 height400px width400px cover" src="../images/display_img1.jpeg" alt="">
     <div class="padding-h40 col align-start gap20">
-      <h1 class="lighter">Lorem ipsum dolor</h1>
-      <p class="light">Curabitur justo ex, scelerisque ac interdum et, bibendum sollicitudin sem. Donec vel sem tempor, pellentesque lectus quis, volutpat eros. Nunc convallis sodales fringilla. Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur. Morbi in ultricies ligula. Nullam pharetra nisi mauris, at volutpat eros dapibus nec. Duis finibus in orci quis varius. Maecenas a eros non ipsum laoreet viverra.</p>
+      <h1 class="lighter">ABOUT GREEN TICKETS</h1>
+      <p class="light">green tickets is the first Lanka's ticket selling platform in the university level.We are the official marketplace provide you with a secure and safe platform to buy and sell tickets in NSBM Green University, If you are looking for tickets for upcoming events green ticket is the place to find them by giving our customers the maximum service with a new experience in online ticket purchasing.We're constantly rolling out new features to improve our service with an outstanding selection of tickets.</p>
     </div>
   </div>
 </div>
@@ -210,7 +210,7 @@ $organizers = getOrganizers($allEvents);
   <br>
   <div class="col gap10 text-center">
     <div class="f-xxlarge bold primary">SUBSCRIBE TO OUR NEWSLETTER</div>
-    <p>Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur.</p>
+    <p>Stay informed and up-to-date on the latest news and events by subscribing to our newsletter.</p>
   </div>
   <hr class="width100">
   <div class="col">
