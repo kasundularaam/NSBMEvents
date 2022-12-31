@@ -213,18 +213,16 @@ $organizers = getOrganizers($allEvents);
     <p>Fusce feugiat interdum dui eu efficitur. Praesent cursus augue non maximus consectetur.</p>
   </div>
   <hr class="width100">
-  <div class="row space-around width100">
-    <img class="width400px" src="../images/mailbox.png" alt="">
-    <div class="col">
-      <div class="f-large col gap10">
-        <label class="dark" for="email">Your Email</label>
-        <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
-        <div class="red"><?php echo $errors["email"] ?></div>
-      </div>
-      <br>
-      <input class="button" type="submit" value="subscribe">
+  <div class="col">
+    <div class="f-large col gap10">
+      <label class="dark" for="email">Your Email</label>
+      <input class="input" type="email" name="email" id="email" value="<?php echo $email ?>">
+      <div class="red"><?php echo $errors["email"] ?></div>
     </div>
+    <br>
+    <input class="button" type="submit" value="subscribe">
   </div>
+  <br>
 </div>
 
 

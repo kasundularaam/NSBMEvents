@@ -56,6 +56,10 @@ hr{
     border-radius: 10px 10px 0px 0px;
 }
 
+.member-image{
+    border-radius: 10px 10px 0px 0px;
+}
+
 .card-description{
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -168,6 +172,20 @@ hr{
 .grid-col4{
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+.grid-col5{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-col6{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-col7{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+
 
 .rel{
     position: relative;
@@ -491,6 +509,13 @@ hr{
     background-size: cover;
     background-position:50% 50%;
     box-shadow: inset 0 0 0 1000px rgba(255,255,255,.8);
+}
+
+.background-img6{
+    background-image: url("./images/background4.jpg");
+    background-size: cover;
+    background-position:50% 50%;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.5);
 }
 
 .primary{

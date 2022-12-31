@@ -16,6 +16,14 @@ class DatabaseHelper
         $this->password = "123456";
     }
 
+    // public function __construct()
+    // {
+    //     $this->dbHost = "sql110.epizy.com";
+    //     $this->dsn = "mysql:host=" . $this->dbHost . ";dbname=epiz_33294388_nsbm_events";
+    //     $this->username = "epiz_33294388";
+    //     $this->password = "JQdiYtDh6MRZ8hS";
+    // }
+
     public function getDB()
     {
         return $this->db;
