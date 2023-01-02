@@ -111,6 +111,15 @@ $events = getAllEvents();
                             <img class="icon-small" src="../images/calendar.png" alt="">
                             <?php echo date("d.m.Y", strtotime($event["date"])) . " at " . date('g:ia', strtotime($event["time"])); ?>
                         </div>
+
+
+
+
+
+
+
+
+
                         <div class="row gap10 dark f-large">
                             <img class="icon-small" src="../images/place.png" alt="">
                             <?php echo $event["place"] ?>
