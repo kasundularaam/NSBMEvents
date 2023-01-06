@@ -79,7 +79,7 @@ authorize();
 
 $title = $imageUrl = $organizedBy = $place = $description = $date = $time = "";
 
-$errors = array("title" => "", "imageUrl" => "", "organizedBy" => "", "place" => "", "description" => "", "date" => "", "time" => "", "entrance" => "");
+$errors = array("title" => "", "image" => "", "organizedBy" => "", "place" => "", "description" => "", "date" => "", "time" => "", "entrance" => "");
 
 $entrance = array("free" => "", "generalAdmission" => "", "vipPass" => "");
 
@@ -95,6 +95,36 @@ function getInput($field)
     } else {
         $errors[$field] = "";
         return $_POST[$field];
+    }
+}
+
+function getImage()
+{
+    global $errors;
+    if (empty($_FILES["image"])) {
+        $errors["image"] = "Image is required";
+    } else {
+        $file_size = $_FILES['image']['size'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+        $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
+
+        $extensions = array("jpeg", "jpg", "png");
+
+        if (in_array($file_ext, $extensions) === false) {
+            $errors["image"] = "extension not allowed, please choose a JPEG or PNG file.";
+        }
+
+        if ($file_size > 2097152) {
+            $errors["image"] = 'File size must be less than 2 MB';
+        }
+
+
+        if (empty($errors["image"])) {
+            $uniqueName = uniqid("event");
+            $path = "../images/events/" . $uniqueName . "." . $file_ext;
+            $fileData = ["path" => $path, "file" => $file_tmp];
+            return $fileData;
+        }
     }
 }
 
@@ -115,7 +145,6 @@ if (isset($_POST["generalAdmission"])) {
 if (isset($_POST["submit"])) {
 
     $title = getInput("title");
-    $imageUrl = getInput("imageUrl");
     $organizedBy = getInput("organizedBy");
     $place = getInput("place");
     $description = getInput("description");
@@ -156,9 +185,18 @@ if (isset($_POST["submit"])) {
         array_push($tickets, $ticket);
     }
 
+    $fileData = getImage();
 
     if (!array_filter($errors)) {
-        $eventId = addEvent($title, $imageUrl, $organizedBy, $place, $description, $date, $time, $entrance);
+        if (!move_uploaded_file($fileData["file"], $fileData["path"])) {
+            $errors["image"] = "Unable to upload image";
+        } else {
+            $errors["image"] = "";
+        }
+    }
+
+    if (!array_filter($errors)) {
+        $eventId = addEvent($title, $fileData["path"], $organizedBy, $place, $description, $date, $time, $entrance);
 
         if ($eventId == "NO") {
             header("Location: index.php");
@@ -183,7 +221,7 @@ if (isset($_POST["submit"])) {
 
 <br>
 
-<form class="card margin-auto fit-content padding-h20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+<form class="card margin-auto fit-content padding-h20" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
     <br>
     <h2 class="primary">Add New Event</h2>
     <hr>
@@ -203,9 +241,9 @@ if (isset($_POST["submit"])) {
         </div>
         <div class="col align-start">
             <div class="f-large col align-start gap10">
-                <label class="dark" for="imageUrl">Image Url</label>
-                <input class="input" type="url" name="imageUrl" id="imageUrl" value="<?php echo $imageUrl ?>">
-                <div class="red"><?php echo $errors["imageUrl"] ?></div>
+                <label class="dark" for="image">Image</label>
+                <input class="input" type="file" name="image" id="image" value="<?php echo $image ?>">
+                <div class="red"><?php echo $errors["image"] ?></div>
             </div>
             <br>
             <div class="f-large col align-start gap10">

@@ -38,7 +38,7 @@ if (isset($_POST["submit"])) {
     }
 
     if (!array_filter($errors)) {
-        if (mail("kasundularaam@gmail.com", $subject, $message)) {
+        if (mail("gimhanofficial@outlook.com", $subject, $message)) {
             $email = $subject = $message = "";
             $sent = "Message sent\nThank you!";
         } else {
